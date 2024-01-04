@@ -1,0 +1,45 @@
+/* components/ToggleSwitch.module.css */
+.toggleSwitch {
+  position: relative;
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.circle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #333;
+  transition: transform 0.3s ease; /* Transition transform property */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggleSwitch.darkMode .circle {
+  transform: translateX(26px); /* Initial position for dark mode */
+  background-color: #fff; /* Dark mode background color */
+}
+
+.toggleSwitch.darkMode .circle.active {
+  transform: translateX(0); /* Position when active (light mode) */
+  background-color: #333; /* Light mode background color */
+}
+
+.icon {
+  /* Adjust styles for the icon */
+  width: 24px; /* Adjust the size as needed */
+  height: 24px;
+  color: #fff;
+}
+.toggleSwitch.darkMode .iconDark {
+  color: #333; /* Dark mode icon color */
+}

@@ -1,0 +1,11 @@
+:root {
+  --max-width: 100vh;
+  --border-radius: 12px;
+  --font-mono: 'Roboto Mono';
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}

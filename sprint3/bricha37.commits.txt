@@ -1,0 +1,619 @@
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  58) 
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  62) 
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600 208)                 onAddNewNode={addNewNode}
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600 226)                 onAddNewNode={addNewNode}
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600   6) import { fetchData } from 'app/api/fetch-data';
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600   7) import { recursePromptText } from 'lib/recurse-prompt';
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  15)   onAddNewNode: (data: string) => void;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  26)   onAddNewNode,
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  49)   const recurseResponse = () => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  50)     const redoArray: string[] = chatTree.returnStringArray();
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  51)     const inputPrompt: string = `${recursePromptText}"${data}"`;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  52)     redoArray[chatTree.priorityChild] = inputPrompt;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  53)     fetchData(redoArray)
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  54)       .then((response: string) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  55)         // chatTree.priorityNodeAtLevel.addChild(new TreeNode(response));
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  56)         // chatTree.priorityNodeAtLevel.changePriorityChild(1);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  57)         onAddNewNode(response);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  58)         onUpdateInputArray(chatTreeVar);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  59)       })
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  60)       .catch((error) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  61)         console.error('API Request Error: ', error);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  62)       });
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  63)   };
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  64) 
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600 118)             <button onClick={() => recurseResponse()}>Recurse!</button>
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  17) import { fetchData } from 'app/api/fetch-data';
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  25)   onAddNewNode: (data: string) => void;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  34)   onAddNewNode,
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  54)     const redoArray: string[] = chatTree.returnStringArray();
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  55)     const inputPrompt: string = `${recursePromptText}"${data}"`;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  56)     redoArray[chatTree.priorityChild] = inputPrompt;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  57)     fetchData(redoArray)
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  58)       .then((response: string) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  59)         // chatTree.priorityNodeAtLevel.addChild(new TreeNode(response));
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  60)         // chatTree.priorityNodeAtLevel.changePriorityChild(1);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  61)         onAddNewNode(response);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  62)         onUpdateInputArray(chatTreeVar);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  63)       })
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  64)       .catch((error) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  65)         console.error('API Request Error: ', error);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  66)       });
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  80)                 className={styles.code}
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  83)                 style={materialOceanic}
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600 113)         <button onClick={() => recurseResponse()}>Recurse!</button>
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  46)   // Interpret the response from the API
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  65)         // Break the loop if parsing is successful
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  66)         break;
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  77)     // Extract the title and actions
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  91)         // Add the extra prompt instructions to get objectives out of the input
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600 114)   // Function for changing the whether or not the input box appears, and changing the add button
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600   6) import { fetchData } from 'app/api/fetch-data';
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600   7) import { recursePromptText } from 'lib/recurse-prompt';
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  15)   onAddNewNode: (data: string) => void;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  26)   onAddNewNode,
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  49)   const recurseResponse = () => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  50)     const redoArray: string[] = chatTree.returnStringArray();
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  51)     const inputPrompt: string = `${recursePromptText}"${data}"`;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  52)     redoArray[chatTree.priorityChild] = inputPrompt;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  53)     fetchData(redoArray)
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  54)       .then((response: string) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  55)         // chatTree.priorityNodeAtLevel.addChild(new TreeNode(response));
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  56)         // chatTree.priorityNodeAtLevel.changePriorityChild(1);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  57)         onAddNewNode(response);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  58)         onUpdateInputArray(chatTreeVar);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  59)       })
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  60)       .catch((error) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  61)         console.error('API Request Error: ', error);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  62)       });
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  63)   };
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  64) 
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600 118)             <button onClick={() => recurseResponse()}>Recurse!</button>
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  17) import { fetchData } from 'app/api/fetch-data';
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  25)   onAddNewNode: (data: string) => void;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  34)   onAddNewNode,
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  54)     const redoArray: string[] = chatTree.returnStringArray();
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  55)     const inputPrompt: string = `${recursePromptText}"${data}"`;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  56)     redoArray[chatTree.priorityChild] = inputPrompt;
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  57)     fetchData(redoArray)
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  58)       .then((response: string) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  59)         // chatTree.priorityNodeAtLevel.addChild(new TreeNode(response));
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  60)         // chatTree.priorityNodeAtLevel.changePriorityChild(1);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  61)         onAddNewNode(response);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  62)         onUpdateInputArray(chatTreeVar);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  63)       })
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  64)       .catch((error) => {
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  65)         console.error('API Request Error: ', error);
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  66)       });
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  80)                 className={styles.code}
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600  83)                 style={materialOceanic}
+8b5c7a55 (brycerichards13  2023-11-15 20:23:56 -0600 113)         <button onClick={() => recurseResponse()}>Recurse!</button>
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  46)   // Interpret the response from the API
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  65)         // Break the loop if parsing is successful
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  66)         break;
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  77)     // Extract the title and actions
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600  91)         // Add the extra prompt instructions to get objectives out of the input
+8b5c7a55 (brycerichards13 2023-11-15 20:23:56 -0600 114)   // Function for changing the whether or not the input box appears, and changing the add button
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  16) import { recursePromptText } from 'lib/recurse-prompt';
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  51)   };
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  52) 
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  53)   const recurseResponse = () => {
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  67)   };
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   1) // React components
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   2) import { useState, useEffect } from 'react';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   3) import { fetchData } from 'app/api/fetch-data';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   4) import { addMessage, addVersion } from 'app/api/ChatData/add-chatData';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   5) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   6) // Components
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   7) import ChatInput from 'components/ChatInput';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   8) import ChatResponse from 'components/ChatResponse';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   9) import { IonIcon } from '@ionic/react';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  10) import { refresh } from 'ionicons/icons';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  12) import ProjectPrompt from 'components/ProjectPrompt';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  13) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  14) // Data
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  15) import { projectPromptText } from 'lib/project-prompt';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  16) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  17) // CSS
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  18) import styles from '../ProjectPrompts/projectprompts.module.css';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  19) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  20) export default function ChatBox() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  21)   'use client';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  22) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  23)   const [inputValue, setInputValue] = useState<string>('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  24)   const [inputArray, setInputArray] = useState<string[]>([]);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  25)   const [inputStringNoExtra, setInputStringNoExtra] = useState<string>('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  26)   const [chainArray, setChainArray] = useState<string[]>([]);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  27)   const [titleValue, setTitle] = useState<string>('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  28)   const [emptyProjectBool, setEmptyProjectBool] = useState<boolean>(true);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  29)   const [addGoalBool, setAddGoalBool] = useState<boolean>(false);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  30) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  31)   function regenerateResponse() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  32)     fetchData([inputArray[0]])
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  33)       .then((res) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  34)         const result = interpretResponse(res);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  35)         setTitle(result.title);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  36)         setChainArray(result.actions);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  37)         setEmptyProjectBool(false);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  38)       })
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  39)       .catch((error) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  40)         console.error('API Request Error: ', error);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  41)       });
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  42)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  43) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  44)   function addNewChain() {}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  45) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  47)   function interpretResponse(input: string): {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  48)     title: string;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  49)     actions: string[];
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  50)   } {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  51)     // Find the first '{' character
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  52)     const startIndex = input.indexOf('{');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  53)     if (startIndex === -1) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  54)       throw new Error('No JSON data found.');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  55)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  56) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  57)     let jsonString = input.substring(startIndex);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  58)     console.log('jsonString: ', jsonString);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  59)     let data;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  60) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  61)     // Try parsing the JSON
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  62)     while (jsonString.length > 0) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  63)       try {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  64)         data = JSON.parse(jsonString);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  67)       } catch (e) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  68)         // Truncate the last character and try again
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  69)         jsonString = jsonString.substring(0, jsonString.length - 1);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  70)       }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  71)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  72) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  73)     if (!data) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  74)       throw new Error('Invalid JSON data.');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  75)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  76) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  78)     const title: string = data.title;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  79)     const actionsArray = Object.values(data.actions).map(
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  80)       (action: any) => action.action,
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  81)     );
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  82) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  83)     return { title, actions: actionsArray };
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  84)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  85) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  86)   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  87)     if (event.key === 'Enter') {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  88)       event.preventDefault();
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  89) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  90)       if (inputValue.trim() !== '') {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  92)         // This might not be secure \/ \/
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  93)         const inputPrompt: string = `${projectPromptText}"${inputValue}"`;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  94)         const updatedInputArray: string[] = [inputPrompt];
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  95) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  96)         fetchData(updatedInputArray)
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  97)           .then((res) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  98)             const result = interpretResponse(res);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  99)             setTitle(result.title);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 100)             setInputArray(updatedInputArray);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 101)             setInputStringNoExtra(inputValue);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 102)             setChainArray(result.actions);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 103)             setEmptyProjectBool(false);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 104)           })
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 105)           .catch((error) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 106)             console.error('API Request Error: ', error);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 107)           });
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 108)         setInputValue('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 109)       } else {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 110)       }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 111)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 112)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 113) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 115)   function handleChangeInputClick() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 116)     setEmptyProjectBool(true);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 117)     setInputValue(inputStringNoExtra);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 118)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 119) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 120)   function handleAddGoalClick() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 121)     setAddGoalBool(true);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 122)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 123) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 124)   return (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 125)     <div>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 126)       <header className={styles.header}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 127)         <h2 className={styles.title}>{titleValue}</h2>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 128)         <button style={{ marginLeft: 'auto', cursor: 'pointer' }}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 129)           <img src="/settings_icon.svg" alt="settings" />
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 130)         </button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 131)       </header>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 132) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 133)       <footer className={styles.footer}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 134)         <button
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 135)           type="button"
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 136)           className={styles.button}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 137)           onClick={() => regenerateResponse()}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 138)         >
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 139)           <span className={styles.button__text}>Regenerate</span>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 140)           <span className={styles.button__icon}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 141)             <IonIcon icon={refresh} />
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 142)           </span>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 143)         </button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 144) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 145)         {emptyProjectBool === true ? (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 146)           <form action={fetchData}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 147)             <input
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 148)               className={styles.textBox}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 149)               onKeyDown={handleKeyDown}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 150)               type={'data'}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 151)               value={inputValue}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 152)               onChange={(e) => setInputValue(e.target.value)}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 153)             />
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 154)           </form>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 155)         ) : (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 156)           <button onClick={handleChangeInputClick}>Change Project Input</button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 157)         )}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 158)       </footer>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 159) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 160)       <main>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 161)         {chainArray.map((message, index) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 162)           return <ProjectPrompt key={index} data={message} />;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 163)         })}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 164)       </main>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 165)       {emptyProjectBool === true ? null : addGoalBool === true ? ( // True
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 166)         <input></input>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 167)       ) : (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 168)         // True
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 169)         <button onClick={handleAddGoalClick}>Add</button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 170)       )}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 171)     </div>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 172)   );
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 173) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  1) .responseText {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  2)   color: black;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  3)   font-size: 1rem;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  4) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  5) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  6) .main {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  7)   overflow: hidden;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  8)   width: 100vw;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  9)   height: 100vh;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 10)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 11)   z-index: 0;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 12)   position: relative;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 13)   background-color: #d9d9d9;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 14) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 15) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 16) .sidebar {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 17)   width: 260px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 18)   background-color: #191825;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 19)   height: 100vh;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 20) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 21) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 22) .chatSection {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 23)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 24)   overflow-y: auto;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 25)   width: calc(100% - 260px);
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 26)   justify-content: center;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 27)   align-items: end;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 28) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 29) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 30) .inputContainer {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 31)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 32)   margin-top: 10px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 33) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 34) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 35) .inputBox ChatBox {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 36)   flex: 1;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 37)   padding: 10px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 38)   border: 1px solid #ccc;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 39)   border-radius: 5px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 40)   outline: none;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 41) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 42) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 43) .chatScroll {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 44)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 45)   overflow-y: auto;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 46)   flex-direction: column;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 47) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 48) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 49) /*input{
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 50)   flex: 1;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 51)   padding: 5px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 52)   border: 1px solid #ccc;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 53)   border-radius: 5px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 54) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 55) }*/
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  1) 'use client';
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  2) import ChatBox from 'components/ChatBox';
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  3) import ProjectPrompts from 'components/ProjectPrompts';
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  4) import styles from 'app/chat/page.module.css';
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  5) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  6) export default function Chat() {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  7)   return (
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  8)     <main className={styles.main}>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  9)       <div className={styles.sidebar}>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 10)         <ProjectPrompts />
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 11)       </div>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 12)     </main>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 13)   );
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 14) }
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  16) import { recursePromptText } from 'lib/recurse-prompt';
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  51)   };
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  52) 
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  53)   const recurseResponse = () => {
+1feb93f8 (brycerichards13         2023-11-15 01:39:38 -0500  67)   };
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  1) // import { Link } from 'react-router-dom';
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  2) import Link from 'next/link';
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  3) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  4) interface ProjectPromptProps {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  5)   key: number;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  6)   data: string;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  7) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  8) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  9) export default function ProjectPrompt({ key, data }: ProjectPromptProps) {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 10)   return (
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 11)     <div>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 12)       <Link href="/chat">
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 13)         <button>{data}</button>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 14)       </Link>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 15)     </div>
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 16)   );
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 17) }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   1) // React components
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   2) import { useState, useEffect } from 'react';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   3) import { fetchData } from 'app/api/fetch-data';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   4) import { addMessage, addVersion } from 'app/api/ChatData/add-chatData';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   5) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   6) // Components
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   7) import ChatInput from 'components/ChatInput';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   8) import ChatResponse from 'components/ChatResponse';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500   9) import { IonIcon } from '@ionic/react';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  10) import { refresh } from 'ionicons/icons';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  12) import ProjectPrompt from 'components/ProjectPrompt';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  13) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  14) // Data
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  15) import { projectPromptText } from 'lib/project-prompt';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  16) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  17) // CSS
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  18) import styles from '../ProjectPrompts/projectprompts.module.css';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  19) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  20) export default function ChatBox() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  21)   'use client';
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  22) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  23)   const [inputValue, setInputValue] = useState<string>('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  24)   const [inputArray, setInputArray] = useState<string[]>([]);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  25)   const [inputStringNoExtra, setInputStringNoExtra] = useState<string>('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  26)   const [chainArray, setChainArray] = useState<string[]>([]);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  27)   const [titleValue, setTitle] = useState<string>('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  28)   const [emptyProjectBool, setEmptyProjectBool] = useState<boolean>(true);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  29)   const [addGoalBool, setAddGoalBool] = useState<boolean>(false);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  30) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  31)   function regenerateResponse() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  32)     fetchData([inputArray[0]])
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  33)       .then((res) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  34)         const result = interpretResponse(res);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  35)         setTitle(result.title);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  36)         setChainArray(result.actions);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  37)         setEmptyProjectBool(false);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  38)       })
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  39)       .catch((error) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  40)         console.error('API Request Error: ', error);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  41)       });
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  42)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  43) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  44)   function addNewChain() {}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  45) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  47)   function interpretResponse(input: string): {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  48)     title: string;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  49)     actions: string[];
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  50)   } {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  51)     // Find the first '{' character
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  52)     const startIndex = input.indexOf('{');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  53)     if (startIndex === -1) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  54)       throw new Error('No JSON data found.');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  55)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  56) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  57)     let jsonString = input.substring(startIndex);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  58)     console.log('jsonString: ', jsonString);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  59)     let data;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  60) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  61)     // Try parsing the JSON
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  62)     while (jsonString.length > 0) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  63)       try {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  64)         data = JSON.parse(jsonString);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  67)       } catch (e) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  68)         // Truncate the last character and try again
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  69)         jsonString = jsonString.substring(0, jsonString.length - 1);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  70)       }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  71)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  72) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  73)     if (!data) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  74)       throw new Error('Invalid JSON data.');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  75)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  76) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  78)     const title: string = data.title;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  79)     const actionsArray = Object.values(data.actions).map(
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  80)       (action: any) => action.action,
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  81)     );
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  82) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  83)     return { title, actions: actionsArray };
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  84)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  85) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  86)   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  87)     if (event.key === 'Enter') {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  88)       event.preventDefault();
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  89) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  90)       if (inputValue.trim() !== '') {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  92)         // This might not be secure \/ \/
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  93)         const inputPrompt: string = `${projectPromptText}"${inputValue}"`;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  94)         const updatedInputArray: string[] = [inputPrompt];
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  95) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  96)         fetchData(updatedInputArray)
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  97)           .then((res) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  98)             const result = interpretResponse(res);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500  99)             setTitle(result.title);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 100)             setInputArray(updatedInputArray);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 101)             setInputStringNoExtra(inputValue);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 102)             setChainArray(result.actions);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 103)             setEmptyProjectBool(false);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 104)           })
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 105)           .catch((error) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 106)             console.error('API Request Error: ', error);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 107)           });
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 108)         setInputValue('');
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 109)       } else {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 110)       }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 111)     }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 112)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 113) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 115)   function handleChangeInputClick() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 116)     setEmptyProjectBool(true);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 117)     setInputValue(inputStringNoExtra);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 118)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 119) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 120)   function handleAddGoalClick() {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 121)     setAddGoalBool(true);
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 122)   }
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 123) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 124)   return (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 125)     <div>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 126)       <header className={styles.header}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 127)         <h2 className={styles.title}>{titleValue}</h2>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 128)         <button style={{ marginLeft: 'auto', cursor: 'pointer' }}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 129)           <img src="/settings_icon.svg" alt="settings" />
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 130)         </button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 131)       </header>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 132) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 133)       <footer className={styles.footer}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 134)         <button
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 135)           type="button"
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 136)           className={styles.button}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 137)           onClick={() => regenerateResponse()}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 138)         >
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 139)           <span className={styles.button__text}>Regenerate</span>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 140)           <span className={styles.button__icon}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 141)             <IonIcon icon={refresh} />
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 142)           </span>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 143)         </button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 144) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 145)         {emptyProjectBool === true ? (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 146)           <form action={fetchData}>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 147)             <input
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 148)               className={styles.textBox}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 149)               onKeyDown={handleKeyDown}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 150)               type={'data'}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 151)               value={inputValue}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 152)               onChange={(e) => setInputValue(e.target.value)}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 153)             />
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 154)           </form>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 155)         ) : (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 156)           <button onClick={handleChangeInputClick}>Change Project Input</button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 157)         )}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 158)       </footer>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 159) 
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 160)       <main>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 161)         {chainArray.map((message, index) => {
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 162)           return <ProjectPrompt key={index} data={message} />;
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 163)         })}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 164)       </main>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 165)       {emptyProjectBool === true ? null : addGoalBool === true ? ( // True
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 166)         <input></input>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 167)       ) : (
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 168)         // True
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 169)         <button onClick={handleAddGoalClick}>Add</button>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 170)       )}
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 171)     </div>
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 172)   );
+1feb93f8 (brycerichards13        2023-11-15 01:39:38 -0500 173) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  1) .chatSection {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  2)   flex-grow: 1;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  3)   width: inherit;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  4) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  5) .chatScroll {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  6)   overflow-y: auto;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  7)   height: calc(100% - 150px);
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  8) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  9) .footer {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 10)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 11)   justify-content: center;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 12)   padding: 10px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 13)   background-color: #d9d9d9;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 14)   max-height: 100px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 15) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 16) .textBox {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 17)   border-radius: 10px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 18)   width: 82vh;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 19)   padding: 0.5rem;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 20)   height: 25px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 21) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 22) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 23) .button {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 24)   display: inline-flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 25)   height: 45px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 26)   padding: 0;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 27)   background: #009578;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 28)   border-radius: 7px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 29)   border: none;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 30)   outline: none;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 31)   overflow: hidden;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 32)   font-size: 14px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 33)   font-weight: 500;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 34)   cursor: pointer;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 35) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 36) .button:hover {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 37)   background: #008168;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 38) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 39) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 40) .button:active {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 41)   background: #006e58;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 42) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 43) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 44) .button__text,
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 45) .button__icon {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 46)   display: inline-flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 47)   align-items: center;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 48)   padding: 0 12px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 49)   color: #fff;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 50)   height: 100%;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 51) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 52) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 53) .button__icon {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 54)   font-size: 1.3em;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 55)   background: rgba(0, 0, 0, 0.08);
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 56) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 57) 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 58) .header {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 59)   background-color: #d9d9d9;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 60)   padding: 10px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 61)   max-height: 50px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 62)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 63) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 64) .flipHorizontal {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 65)   transform: scaleX(-1);
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 66) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 67) .title {
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 68)   display: flex;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 69)   padding: 0px 28px;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 70)   justify-content: center;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 71)   align-items: center;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 72)   flex: 1 0 0;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 73)   align-self: stretch;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 74) }
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  1) export const projectPromptText = `
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  2) I want you to pretend you are a task solver helper.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  3) The first thing I want you to do is determine if my input is something pertaining to a task or goal. You will then analyze your input and provide a detailed, step-by-step plan to accomplish it. If your input isn't related to a task or goal, you'll let them know so you can provide the appropriate kind of input. 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  4) Response logic: 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  5) Identify Task or Goal:
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  6) If the input is a task or goal, proceed to Step 2.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  7) If not, respond with: "Please provide an input pertaining to a task or goal that you would like to accomplish."
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  8) Respond Accordingly:
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500  9) The one condition that I ask you to follow when responding with the steps required is to separate each step using in JSON formatting so I format the input. 
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 10) I want the first property to be called "title" with the value to be what the task is.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 11) Make the steps ALWAYS being labeled as “action” when making the properties.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 12) I don’t want any other JSON names other than “title” and “action”.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 13) Always contain the actions in a property called “actions”.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 14) Make the actions relatively brief.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 15) You must surround each individual property and values with double quotes.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 16) I want only the JSON in your response.
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 17) Here is the input: “
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 18) `;
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 1) export const recursePromptText = `
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 2) Pretend you are an AI that helps with tasks automatically. You don't need to worry about providing information to the user about their task and instead offer solutions to automatically solve their given task. Here is the task: “
+1feb93f8 (brycerichards13 2023-11-15 01:39:38 -0500 3) `;

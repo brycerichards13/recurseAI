@@ -1,0 +1,166 @@
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400   1) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400   2) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400   3) /* Login Page Format (GOOGLE BUTTON) */
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400   4) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400   5) .container{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400   6)     height: 100vh;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400   7) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400   8) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400   9) .signInButton{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  10)     box-sizing: border-box;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  11)     position: relative;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  12)     top: 50%;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  13)     left: 50%;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  14)     transform: translate(-50%, -50%);
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  15)     margin: 10px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  16)     display: inline-block;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  17)     width: 240px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  18)     height: 50px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  19)     background-color: #4285f4;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  20)     color: white;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  21)     border-radius: 5px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  22)     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  23)     transition: background-color .218s, border-color .218s, box-shadow .218s;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  24) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  25) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  26) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  27) .signInButton:hover {
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  28)     
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  29)     
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  30)     box-shadow:  0 0 3px 3px rgba(66, 133, 244, .3);
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  31) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  32) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  33) .signInButton:active{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  34)     background-color: #3367D6;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  35)     transition: background-color .2s;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  36) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  37) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  38) .signInButton .contentWrapper{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  39)     height: 100%;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  40)     width: 100%;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  41)     border: 1px solid transparent;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  42) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  43) .signInButton img{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  44)     width: 18px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  45)     height: 18px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  46) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  47) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  48) .signInButton .logoWrapper{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  49)     padding: 15px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  50)     background: #fff; 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  51)     width: 20px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  52)     height: 40%;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  53)     border-radius: 5px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  54)     display: inline-block;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  55) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  56) .signInButton button{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  57)     color: white;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  58)     line-height: 48px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  59)     width: 190px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  60)     vertical-align: top;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  61)     background: transparent;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  62)     border: none;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  63)     font-size: 16px;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  64) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  65) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  66) .signInButton:hover button{
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  67)     cursor: pointer;
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  68) }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  69) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  70) /* Logout or Continue Page Format */
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  71) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  72) /* Position Logout button center and bottom*/
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  73) .signOutButton{
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  74)   position: fixed;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  75)   bottom: 0;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  76)   width: 100%;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  77)   height: 200px;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  78)   text-align: center;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  79) }
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  80) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  81) .signOutButton button{
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  82)   box-sizing: border-box;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  83) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  84)   background-color: red;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  85)   border-color: white;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  86)   
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  87)   color: white;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  88)   padding: 40px;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  89)   font-size: 20px;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  90)   border-style: dotted;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  91) }
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  92) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  93) .signOutButton:hover button{
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  94)   cursor: pointer;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  95) }
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  96) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  97) .header{
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  98) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400  99)   color: white;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 100)   text-align: center;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 101)   border-bottom: 5px solid white;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 102) }
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 103) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 104) .continue {
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 105)   padding: 15rem;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 106)   height: 30px;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 107)   text-align: center;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 108) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 109) }
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 110) .mylink{
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 111)   color: white;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 112)   font-size: 20px;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 113)   text-decoration: none;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 114) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 115)   box-sizing: border-box;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 116)   background-color: #3367D6;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 117) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 118)   padding: 40px;
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 119)   border-style:dotted
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 120) }
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 121) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 122) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 123) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  5) import styles from '../login/login.module.css';
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400  6) import Link from 'next/link';
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 15)   const handleSignInWithGoogle = () => {
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 16)     signInWithGoogle();
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 17)   }
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 34) 
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 36)     
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 37)     
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 38)     <body>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 39)       <div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 40)         
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 41)         
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 42)         {user ? (
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 43)           <>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 44)             <div className = {styles.header}>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 45)               <h1>Login Successful</h1>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 46)               <h2> Welcome, {user.displayName}</h2>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 47)             </div>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 48) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 49)             <div className = {styles.continue}>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 50)               <Link href = '/chat_page' className={styles.mylink}>Continue</Link>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 51)             </div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 52) 
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 53)               <div className = {styles.signOutButton}>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 54)                 <button onClick={signOut}>Sign Out</button>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 55)               </div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 56)               
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 57)             
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 58)           </>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 59)         ) : (
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 60)           <div className={styles.container}>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 61)             <div className={styles.signInButton}>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 62)               <div className={styles.contentWrapper}>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 63)                 <div className = {styles.logoWrapper}>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 64)                   <img src = "https://developers.google.com/identity/images/g-logo.png"></img>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 65)                 </div>
+63500bc4 (Austin Gilbert 2023-10-12 01:16:59 -0400 66)                 <button onClick={handleSignInWithGoogle}>Sign in with Google</button>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 67)               </div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 68)             </div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 69)           </div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 70)         )}
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 71)       </div>
+d0220e2a (Austin Gilbert 2023-10-11 20:32:35 -0400 72)     </body>

@@ -1,0 +1,183 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.chatSection {
+  flex-grow: 1;
+  width: inherit;
+}
+.chatScroll {
+  overflow-y: auto;
+  height: calc(100% - 150px);
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #ffffff;
+  max-height: 100px;
+}
+.textBox {
+  border-radius: 10px;
+  width: 82vh;
+  padding: 0.5rem;
+  height: 25px;
+}
+
+.button {
+  display: inline-flex;
+  height: 45px;
+  padding: 0;
+  background: #009578;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.button:hover {
+  background: #008168;
+}
+
+.button:active {
+  background: #006e58;
+}
+
+.button__text,
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  height: 100%;
+}
+
+.button__icon {
+  font-size: 1.3em;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  background-color: #d9d9d9;
+  padding: 10px;
+  max-height: 50px;
+  display: flex;
+  width: 100%;
+  height: 8vh;
+}
+.flipHorizontal {
+  transform: scaleX(-1);
+}
+.title {
+  display: flex;
+  padding: 0px 28px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.container {
+  /* min-height: 100vh; */
+  background-color: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* --------------Center Text Guiding User---------------------- */
+.centerGuidingText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.animateUpElement {
+  visibility: hidden;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.revealUp {
+  animation: fadeInUp 1.4s cubic-bezier(0.64, 0.17, 0.48, 1.25) forwards;
+  visibility: visible;
+}
+/* ------------------------------------------------------------ */
+
+/* --------------------Loading Spinner------------------------- */
+.loader {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd); */
+  animation: animate 1.2s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(
+    rgb(141, 0, 188),
+    rgb(24, 14, 87),
+    rgb(141, 0, 188)
+  );
+}
+
+.loader span:nth-child(1) {
+  filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+  filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+  filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+  filter: blur(50px);
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #ffffff;
+  border: solid white 10px;
+  border-radius: 50%;
+}
+/* ------------------------------------------------------------ */

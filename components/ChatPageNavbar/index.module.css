@@ -1,0 +1,295 @@
+/* Landing page Horizontal Navigation Bar */
+.sidebar {
+  width: 260px;
+  background-color: #191825;
+  height: 100vh;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transition: width 0.3s ease;
+}
+.sidebarclosed {
+  width: 0;
+}
+
+.navbar {
+  background-color: #191825;
+  color: #fff;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.brand a {
+  color: #e6fffc;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2.25rem;
+}
+
+.right {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+}
+
+.action a {
+  color: #e6fffc;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.action a:hover {
+  text-decoration: underline;
+}
+
+.documentation {
+  background-color: #43434f;
+}
+
+.account {
+  background-color: #865dff;
+}
+
+.button {
+  border-radius: 12px;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.iconTextContainer {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 10px;
+}
+
+/* Chat page Vertical Navigation Bar */
+.nav {
+  flex-shrink: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: inherit;
+  height: 80vh;
+  background-color: #191825;
+  color: #e6fffc;
+}
+
+/* Styles for newChat Button */
+.newChat {
+  display: inline-flex;
+  height: 45px;
+  padding: 0;
+  background: #009578;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  width: 80%;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.newChat:hover {
+  background: #008168;
+}
+
+.newChat:active {
+  background: #006e58;
+}
+
+.button__text,
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  height: 100%;
+}
+
+.button__icon {
+  font-size: 1.3em;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Chat history buttons */
+
+.history {
+  display: inline-flex;
+  height: 35px;
+  width: 95%;
+  padding: 0;
+  background: #191825;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  font-weight: 250;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+.history:hover {
+  background: #43434f;
+}
+
+.history_text,
+.history_icon {
+  display: inline-flex;
+  margin-left: 3px;
+  align-items: center;
+  padding: 0 7px;
+  color: #fff;
+  height: 100%;
+}
+.history_icon {
+  font-size: 1.5em;
+}
+
+.active {
+  background: #43434f;
+}
+
+.deleteButton{
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 200;
+  margin-left: 5%;
+}
+
+.deleteButton:hover{
+  color: #d9d9d9;
+}
+
+.navBox {
+  padding: 10px;
+  height: 20vh;
+  box-sizing: border-box;
+}
+
+.fileArea {
+  border: 2px dashed #ccc;
+  padding: 3px;
+  text-align: center;
+  box-sizing: border-box;
+  height: calc(20vh - 20px);
+  color: white;
+  overflow-y: auto;
+  gap: 4px;
+}
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.fileButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Fixed width */
+  height: 50px; /* Fixed height */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  padding: 5px; /* Reduced padding */
+  box-sizing: border-box;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  display: block; /* Adjust this as needed */
+}
+
+.fileButton .fileIcon {
+  display: block; /* Show file icon by default */
+}
+.fileButton .deleteIcon {
+  display: none;
+}
+
+.fileButton:hover .fileIcon {
+  display: none; /* Hide file icon on hover */
+}
+
+.fileButton:hover .deleteIcon {
+  display: block; /* Show delete icon on hover */
+}
+
+.fileButton:hover .fileName {
+  display: none;
+}
+
+.fileButton:hover .deleteText {
+  display: block;
+}
+
+.fileName, .deleteText {
+  font-size: 8px; /* Reduced font size */
+  width: 100%;
+  margin-top: 2px; /* Reduced margin */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.deleteText {
+  display: none;
+  color: red;
+}
+
+ .fileName {
+  position: relative;
+}
+
+.fileButton:hover::after{
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}

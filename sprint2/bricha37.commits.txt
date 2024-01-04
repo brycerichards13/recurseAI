@@ -1,0 +1,306 @@
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500   1) // React components
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500   5) 
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500   6) // Components
+1a921c68 components/chat-box.tsx      (brycerichards13  2023-10-24 15:17:03 -0500  13) // CSS
+1a921c68 components/chat-box.tsx      (brycerichards13  2023-10-24 15:17:03 -0500  15) 
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  17) // Init the chat tree and current node
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  18) // The current node is created to more easily add to the chain of nodes without having to iterate through the tree to find where to add the node
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  19) const chatTree = new Tree('root');
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  20) let currentNode: TreeNode;
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  21) 
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  24) 
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  25)   // Input value is equal to the current input in the input box
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  26)   // Input array is equal to the array of all inputs and outputs
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  27)   const [inputValue, setInputValue] = useState<string>('');
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  28)   const [inputArray, setInputArray] = useState<string[]>([]);
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  30)   function changePreviousInput(data: string, index: number) {
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  31)     // If the new input is different from the old input, then update the tree
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  32)     if (data != inputArray[index]) {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  33)       let priorityNodeAtLevel: TreeNode;
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  34)       // If the index is 0, then the priority node is the root node, and we need to add a new child directly to the tree ds
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  35)       // Otherwise we need to find the parent node of the node the user is changing, and add the new node as a child of that parent node
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  36)       // Once the new node (the new user input) is added, we change the priority child which basically switches the path of the tree to the new node
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  37)       if (index === 0) {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  38)         priorityNodeAtLevel = new TreeNode(data);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  39)         chatTree.children.push(priorityNodeAtLevel);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  40)         chatTree.priorityChild = chatTree.priorityChild + 1;
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  41)       } else {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  42)         priorityNodeAtLevel = chatTree.getChildAtLevel(index - 1, chatTree);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  43)         priorityNodeAtLevel.addChild(new TreeNode(data));
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  44)         priorityNodeAtLevel.changePriorityChild(1);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  45)       }
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  46) 
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  47)       updateInputArray(chatTree);
+30b27fdf components/ChatBox/index.tsx (brycerichards13  2023-10-29 21:36:58 -0500  48)       currentNode = priorityNodeAtLevel;
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  49)       regenerateResponse(index + 1);
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  50)     }
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  51)   }
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  52) 
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  53)   function regenerateResponse(indexToGoTill: number) {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  54)     const priorityNodeAtLevel: TreeNode = chatTree.getChildAtLevel(
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  55)       indexToGoTill - 1,
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  56)       chatTree,
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  57)     );
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  58) 
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  59)     const redoArray: string[] = chatTree
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  60)       .returnStringArray()
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  61)       .slice(0, indexToGoTill);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  62) 
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  63)     fetchData(redoArray)
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  64)       .then((response: string) => {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  65)         priorityNodeAtLevel.addChild(new TreeNode(response));
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  66)         priorityNodeAtLevel.changePriorityChild(1);
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  67)         updateInputArray(chatTree);
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  68)       })
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  69)       .catch((error) => {
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  70)         console.error('API Request Error: ', error);
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  71)       });
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  72)   }
+6428fbd5 components/chat-box.tsx      (brycerichards13  2023-10-25 09:48:54 -0500  73) 
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  74)   // Traverses through the tree to find the priority nodes and updates the input array
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  75)   // Also updates the current node to be the last priority node in the tree
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  76)   function updateInputArray(tree: Tree) {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  77)     const newInputArray: string[] = tree.returnStringArray();
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  78)     setInputArray(newInputArray);
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  79)     currentNode = tree.getChildAtLevel(newInputArray.length - 1, tree);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  80)   }
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  81) 
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  82)   function addNewNode(inputValue: string) {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  83)     if (currentNode) {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  84)       const childNode: TreeNode = new TreeNode(inputValue);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  85)       currentNode.addChild(childNode);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  86)       currentNode = childNode;
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  87)     } else {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  88)       currentNode = new TreeNode(inputValue);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  89)       chatTree.children.push(currentNode);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  90)     }
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500  91)     updateInputArray(chatTree);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  92)   }
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  93) 
+bf88d562 components/chat-box.tsx      (brycerichards13  2023-10-17 13:00:45 -0500  96)       event.preventDefault();
+1a921c68 components/chat-box.tsx      (brycerichards13  2023-10-24 15:17:03 -0500  97) 
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  98)       addNewNode(inputValue);
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500  99) 
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 100)       const updatedInputArray: string[] = chatTree.returnStringArray();
+1a921c68 components/chat-box.tsx      (brycerichards13  2023-10-24 15:17:03 -0500 101)       // Calls a server function from a separate file (because it's asynchronous and the component were currently in is a client component)
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 102)       // Awaits a response, then adds the new response to the tree
+110b636b components/chat-box.tsx      (brycerichards13  2023-10-17 13:26:37 -0500 103)       fetchData(updatedInputArray)
+110b636b components/chat-box.tsx      (brycerichards13  2023-10-17 13:26:37 -0500 104)         .then((res) => {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 105)           addNewNode(res);
+110b636b components/chat-box.tsx      (brycerichards13  2023-10-17 13:26:37 -0500 106)         })
+110b636b components/chat-box.tsx      (brycerichards13  2023-10-17 13:26:37 -0500 107)         .catch((error) => {
+110b636b components/chat-box.tsx      (brycerichards13  2023-10-17 13:26:37 -0500 108)           console.error('API Request Error: ', error);
+110b636b components/chat-box.tsx      (brycerichards13  2023-10-17 13:26:37 -0500 109)         });
+1a921c68 components/chat-box.tsx      (brycerichards13  2023-10-24 15:17:03 -0500 110)       //Resets the input box to be empty
+bf88d562 components/chat-box.tsx      (brycerichards13  2023-10-17 13:00:45 -0500 111)       setInputValue('');
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 117)       <div className={styles.chatScroll}>
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 118)         {inputArray.map((message, index) => {
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 119)           if (index % 2 === 0) {
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 120)             return (
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 121)               <ChatInput
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 122)                 key={index}
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 123)                 data={message}
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 124)                 indexValue={index}
+7a7c13ae components/ChatBox/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 125)                 chatTree={chatTree}
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 126)                 // Prop function to change the priority child of the parent node
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 127)                 // The .bind function is there because otherwise the node being passed in would not have the correct values
+7a7c13ae components/ChatBox/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 128)                 onChangePriorityChild={chatTree
+7a7c13ae components/ChatBox/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 129)                   .getChildAtLevel(index - 1, chatTree)
+7a7c13ae components/ChatBox/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 130)                   .changePriorityChild.bind(
+7a7c13ae components/ChatBox/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 131)                     chatTree.getChildAtLevel(index - 1, chatTree),
+7a7c13ae components/ChatBox/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 132)                   )}
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 133)                 onUpdateInputArray={updateInputArray}
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 134)                 onChangePreviousInput={changePreviousInput}
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 135)               />
+699920ca components/chat-box.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 136)             );
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 137)           } else {
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 138)             return (
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 139)               <ChatResponse
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 140)                 key={index}
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 141)                 data={message}
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 142)                 index={index}
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 143)                 chatTree={chatTree}
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 144)                 // Prop function to change the priority child of the parent node
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 145)                 // The .bind function is there because otherwise the node being passed in would not have the correct values
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 146)                 onChangePriorityChild={chatTree
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 147)                   .getChildAtLevel(index - 1, chatTree)
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 148)                   .changePriorityChild.bind(
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 149)                     chatTree.getChildAtLevel(index - 1, chatTree),
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 150)                   )}
+6d36682c components/ChatBox/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 151)                 onUpdateInputArray={updateInputArray}
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 152)               />
+60d89efb components/ChatBox/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 153)             );
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 154)           }
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 155)         })}
+8be291c1 components/chat-box.tsx      (brycerichards13  2023-10-24 16:18:11 -0500 156)       </div>
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  2) import { useState } from 'react';
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500  6) 
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500  8)   data: string;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 10)   chatTree: Tree;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 11)   onChangePriorityChild: (direction: number) => void;
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 12)   onChangePreviousInput: (data: string, index: number) => void;
+6d36682c components/ChatInput/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 13)   onUpdateInputArray: (chatTree: Tree) => void;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 17)   data,
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 19)   chatTree,
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 21)   onChangePriorityChild,
+6d36682c components/ChatInput/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 22)   onUpdateInputArray,
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 23)   onChangePreviousInput,
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 25)   const [isEditing, setIsEditing] = useState(false);
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 26)   const [inputValue, setInputValue] = useState(data);
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 27)   const indexVal: number = indexValue;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 28)   const chatTreeVar: Tree = chatTree;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 29) 
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 30)   function changeChildAndRefreshArray(direction: number) {
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 31)     if (indexVal === 0) {
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 32)       if (chatTreeVar.priorityChild + direction < 0) return;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 33)       if (chatTreeVar.priorityChild + direction > chatTree.children.length - 1)
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 34)         return;
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 35)       chatTreeVar.priorityChild = chatTreeVar.priorityChild + direction;
+6d36682c components/ChatInput/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 36)       onUpdateInputArray(chatTreeVar);
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 37)       setInputValue(chatTreeVar.returnStringArray()[chatTreeVar.priorityChild]);
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 38)     } else {
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 39)       onChangePriorityChild(direction);
+6d36682c components/ChatInput/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 40)       onUpdateInputArray(chatTreeVar);
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 41)       setInputValue(chatTreeVar.returnStringArray()[indexVal]);
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 42)     }
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 43)   }
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 44) 
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 45)   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 46)     setInputValue(event.target.value);
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 47)   };
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 48) 
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 49)   const handleEditButtonClick = () => {
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 50)     setIsEditing(true);
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 51)   };
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 52) 
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 53)   const handleInputBlur = () => {
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 54)     setIsEditing(false);
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 55)     onChangePreviousInput(inputValue, indexVal);
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 56)   };
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 57) 
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 60)       {isEditing ? (
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 61)         <input
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 62)           type="data"
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 63)           value={inputValue}
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 64)           onChange={handleInputChange}
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 65)           onBlur={handleInputBlur}
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 66)         />
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 67)       ) : (
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 68)         <div>
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 69)           <p className={styles.responseText}>{inputValue}</p>
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 70)           <button onClick={handleEditButtonClick}>Change Input</button>
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 71)           <button onClick={() => changeChildAndRefreshArray(-1)}>
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 72)             {' '}
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 73)             GO BACK
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 74)           </button>
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 75)           <button onClick={() => changeChildAndRefreshArray(1)}>
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 76)             {' '}
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 77)             GO FORWARD{' '}
+7a7c13ae components/ChatInput/index.tsx (brycerichards13  2023-10-30 12:11:18 -0500 78)           </button>
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 79)         </div>
+699920ca components/chat-input.tsx      (brycerichards13  2023-10-25 15:16:29 -0500 80)       )}
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 18)   data: string;
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 19)   index: number;
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 20)   chatTree: Tree;
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 21)   onChangePriorityChild: (direction: number) => void;
+6d36682c components/ChatResponse/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 22)   onUpdateInputArray: (chatTree: Tree) => void;
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 32)   const chatTreeVar: Tree = chatTree;
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 33) 
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 34)   function changeChildAndRefreshArray(direction: number) {
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 35)     onChangePriorityChild(direction);
+6d36682c components/ChatResponse/index.tsx (brycerichards13  2023-10-30 13:03:48 -0500 36)     onUpdateInputArray(chatTreeVar);
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 37)   }
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 38) 
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 66)       <button onClick={() => changeChildAndRefreshArray(-1)}> GO BACK </button>
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 67)       <button onClick={() => changeChildAndRefreshArray(1)}>
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 68)         {' '}
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 69)         GO FORWARD{' '}
+60d89efb components/ChatResponse/index.tsx (brycerichards13  2023-10-29 20:34:10 -0500 70)       </button>
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  1) // Tree data structure used to hold the chat responses and inputs
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  2) // Each node in the tree has a priority child which is what the user is currently looking at
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  3) // However hitting the go forward or go back changes the priority child and updates what the user is seeing
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  4) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  5) class TreeNode {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  6)   data: string;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  7)   children: TreeNode[];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  8)   priorityChild: number;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500  9) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 10)   constructor(data: string) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 11)     this.data = data;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 12)     this.children = [];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 13)     this.priorityChild = 0;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 14)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 15) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 16)   addChild(childNode: TreeNode): void {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 17)     this.children.push(childNode);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 18)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 19) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 20)   changePriorityChild(direction: number): void {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 21)     if (this.priorityChild + direction < 0) return;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 22)     if (this.priorityChild + direction > this.children.length - 1) return;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 23) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 24)     this.priorityChild = this.priorityChild + direction;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 25)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 26) }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 27) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 28) class Tree {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 29)   data: string;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 30)   children: TreeNode[];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 31)   priorityChild: number;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 32) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 33)   constructor(rootData: string) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 34)     this.children = [];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 35)     this.data = rootData;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 36)     this.priorityChild = 0;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 37)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 38) 
+6d36682c (brycerichards13 2023-10-30 13:03:48 -0500 39)   // Returns the priority child of the tree at a certain height (the level)
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 40)   getChildAtLevel(level: number, chatTree: Tree): TreeNode {
+7a7c13ae (brycerichards13 2023-10-30 12:11:18 -0500 41)     if (level < 0) level = 0;
+7a7c13ae (brycerichards13 2023-10-30 12:11:18 -0500 42) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 43)     let iteratorNode: TreeNode = chatTree.children[chatTree.priorityChild];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 44) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 45)     for (let i = 0; i < level; i++) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 46)       iteratorNode = iteratorNode.children[iteratorNode.priorityChild];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 47)     }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 48) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 49)     return iteratorNode;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 50)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 51) 
+6d36682c (brycerichards13 2023-10-30 13:03:48 -0500 52)   // Returns the string array representation of what path of the tree the user is currently on
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 53)   returnStringArray(): string[] {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 54)     let iteratorNode: TreeNode = this.children[this.priorityChild];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 55)     const totalArray: string[] = [];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 56) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 57)     while (iteratorNode) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 58)       totalArray.push(iteratorNode.data);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 59)       iteratorNode = iteratorNode.children[iteratorNode.priorityChild];
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 60)     }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 61) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 62)     return totalArray;
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 63)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 64) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 65)   printTree(node?: TreeNode, depth: number = 0): void {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 66)     if (!node) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 67)       // For the root
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 68)       console.log(`Depth ${depth}: [${this.data}]`);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 69)       if (this.children.length > 0) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 70)         const childData = this.children.map((child) => child.data);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 71)         console.log(`Depth ${depth + 1} children: [${childData.join(', ')}]`);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 72)         for (const child of this.children) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 73)           this.printTree(child, depth + 2);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 74)         }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 75)       }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 76)     } else {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 77)       if (node.children.length > 0) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 78)         const childData = node.children.map((child) => child.data);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 79)         console.log(`Depth ${depth} children: [${childData.join(', ')}]`);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 80)         for (const child of node.children) {
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 81)           this.printTree(child, depth + 1);
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 82)         }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 83)       }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 84)     }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 85)   }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 86) }
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 87) 
+60d89efb (brycerichards13 2023-10-29 20:34:10 -0500 88) export { Tree, TreeNode };

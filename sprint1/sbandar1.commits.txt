@@ -1,0 +1,66 @@
+// app/api/aiApiWrapper/AiApiWrapper.ts
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 1) export abstract class AiApiWrapper {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 2)   abstract prompt(messages: string[]): Promise<string>;
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 3) }
+
+// app/api/aiApiWrapper/PalmAiApiWrapper.ts
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  1) import { AiApiWrapper } from './AiApiWrapper';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  2) import { DiscussServiceClient } from '@google-ai/generativelanguage';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  3) import { GoogleAuth } from 'google-auth-library';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  4) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  5) export class PalmAiApiWrapper extends AiApiWrapper {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  6)   private MODEL_NAME = 'models/chat-bison-001';
+c85c8a0f (Shashank Bandaru 2023-10-11 15:58:38 -0400  7)   private PALMAI_KEY = process.env.PALMAI_KEY || '';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  8)   private TEMPERATURE = 0.5;
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  9)   private CANDIDATE_COUNT = 1;
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 10)   private client: DiscussServiceClient;
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 11) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 12)   constructor() {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 13)     super();
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 14)     this.client = new DiscussServiceClient({
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 15)       authClient: new GoogleAuth().fromAPIKey(this.PALMAI_KEY),
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 16)     });
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 17)   }
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 18) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 19)   async prompt(messages: string[]): Promise<string> {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 20)     const normalized_messages = messages.map((msg) => ({ content: msg }));
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 21) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 22)     const result = await this.client.generateMessage({
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 23)       model: this.MODEL_NAME,
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 24)       temperature: this.TEMPERATURE,
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 25)       candidateCount: this.CANDIDATE_COUNT,
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 26)       prompt: {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 27)         messages: normalized_messages,
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 28)       },
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 29)     });
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 30) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 31)     return result?.[0]?.candidates?.[0]?.content ?? 'Error generating message.';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 32)   }
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 33) }
+
+// app/page.tsx
+e0b0f593 (Shashank Bandaru 2023-09-29 10:07:08 -0400  4) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  5) import { PalmAiApiWrapper } from 'app/api/aiApiWrapper/PalmAiApiWrapper';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  6) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  7) async function test() {
+55906a83 (Shashank Bandaru 2023-10-11 16:06:26 -0400  8)   'use server';
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400  9)   const x = new PalmAiApiWrapper();
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 10)   const res = await x.prompt(['hi', 'hello!', 'how can i bake a cake?']);
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 11)   console.log(res);
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 12) }
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 13) 
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 14) export default async function Home() {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 15)   await test();
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 16) 
+e0b0f593 (Shashank Bandaru 2023-09-29 10:07:08 -0400 17)   return (
+e0b0f593 (Shashank Bandaru 2023-09-29 10:07:08 -0400 22)       </div>
+e0b0f593 (Shashank Bandaru 2023-09-29 10:07:08 -0400 25) }
+
+// app/not-found.tsx
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 1) export default function NotFound() {
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 2)   return (
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 3)     <main>
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 4)       <p style={{ color: 'white' }}>Error 404: This page doesn't exist!</p>
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 5)     </main>
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 6)   );
+bc0c3486 (Shashank Bandaru 2023-10-11 01:37:07 -0400 7) }

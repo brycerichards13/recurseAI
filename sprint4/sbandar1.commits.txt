@@ -1,0 +1,73 @@
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 422)       const instruction = 'You are the AI. The user has provided you with a knowledge base and some input as a JSON object.\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 423)       Your task is to incrementally solve the problem. You should always respond in JSON format. Here is a pseudo schema for the format:\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 424)       {\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 425)         command: RESPONSE | WEBSITE,\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 426)         content: string\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 427)       }\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 428)       If you choose the RESPONSE command, just send a message like normal. If you choose the WEBSITE command, then provide a link to the website\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 429)       you would like summarized. The user will send the summary back to you, along with the knowledge and this task prompt.\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 430)       Remember, you must always follow this exact JSON schema and may not deviate from it at any time. Do not add extra sentences or conversational\
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 431)       phrases outside of the JSON object, the user is only interested in your JSON object.';
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  17) import { fetchData, summarizeURL } from 'app/api/fetch-data';
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  18) import { useEffect, useState } from 'react';
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  37)   const [content, setContent] = useState("");
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  71)   useEffect(() => {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  72)     interface AiResponse {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  73)       command: "RESPONSE" | "WEBSITE",
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  74)       content: string
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  75)     };
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  76) 
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  77)     const getContent = async (res: string): Promise<void> => {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  78)       console.log(res)
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  79)       // Match the JSON object.
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  80)       const jsonMatch = res.match(/\{[\s\S]*\}/);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  81)       
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  82)       // Trim all excess whitespace around JSON object.
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  83)       let jsonString = "";
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  84)       if (jsonMatch) {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  85)         jsonString = jsonMatch[0].trim();
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  86)       }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  87)       else {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  88)         setContent("AI error.")
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  89)         return;
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  90)       }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  91) 
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  92)       // Parse JSON object.
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  93)       let json: AiResponse;
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  94)       try {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  95)         json = JSON.parse(jsonString);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  96)       }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  97)       catch (err) {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  98)         setContent("AI error.")
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  99)         return;
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 100)       }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 101) 
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 102)       // Return content if command is RESPONSE.
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 103)       if (json.command === "RESPONSE") {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 104)         setContent(json.content);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 105)       }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 106)       else {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 107)         setContent("Searching " + json.content + "...\n" + "Caution AI may become sentient...");
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 108)         const summary = await summarizeURL(json.content);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 109)         const res: AiResponse = {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 110)           command: "RESPONSE",
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 111)           content: summary
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 112)         };
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 113)         onAddNewNode(JSON.stringify(res));
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 114)         onUpdateInputArray(chatTreeVar);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 115)       }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 116)     };
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 117) 
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 118)     void getContent(data);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 119)   }, ([chatTreeVar, data, onAddNewNode, onUpdateInputArray]));
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 120) 
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 147)         {content}
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  3) import summarize from 'app/api/webScraper/summarize';
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500  4) import webScraper from 'app/api/webScraper/webScraper';
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 17) 
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 18) export async function summarizeURL(url: string): Promise<string> {
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 19)   const content = await webScraper(url);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 20)   const summary = await summarize(PalmAiApiWrapper, content);
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 21)   return summary;
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 22) }
+7ef42f74 (Shashank Bandaru 2023-12-01 11:08:13 -0500 11)   const res = await fetch(url).then(res => res.text());

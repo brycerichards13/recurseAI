@@ -1,0 +1,14 @@
+.border {
+    background-color: #43434f;
+    height: 4px;
+    width: 100vw;
+}
+
+.box {
+  color: #ecf0ff;
+  border: 4px solid #43434f;
+  border-radius: 10px;
+  background-color: #2f3137;
+  padding: 10px;
+  margin: 50px;
+}

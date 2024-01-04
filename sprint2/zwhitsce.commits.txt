@@ -1,0 +1,333 @@
+@@ -1,7 +1,13 @@
+import React from 'react';
+
+export default function NotFound() {
+  return (
+    <main>
+      <p>Error 404: This page doesn't exist!</p>
+      <div className="error-container">
+        <img src="..\images\error404Smiley.png" alt="Upside-Down Smiley Face" />
+        <h1>Error 404: This page does not exist!</h1>
+        <p>The page you're looking for seems to be missing or broken. We apologize for the inconvenience.</p>
+      </div>
+    </main>
+  );
+}
+  36 changes: 22 additions & 14 deletions36  
+components/ChatBox/index.tsx
+@@ -95,20 +95,25 @@ export default function ChatBox() {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+
+      addNewNode(inputValue);
+
+      const updatedInputArray: string[] = chatTree.returnStringArray();
+      // Calls a server function from a separate file (because it's asynchronous and the component were currently in is a client component)
+      // Awaits a response, then adds the new response to the tree
+      fetchData(updatedInputArray)
+        .then((res) => {
+          addNewNode(res);
+        })
+        .catch((error) => {
+          console.error('API Request Error: ', error);
+        });
+      //Resets the input box to be empty
+      setInputValue('');
+      if (inputValue.trim() !== '') {
+        addNewNode(inputValue);
+
+        const updatedInputArray: string[] = chatTree.returnStringArray();
+        // Calls a server function from a separate file (because it's asynchronous and the component were currently in is a client component)
+        // Awaits a response, then adds the new response to the tree
+        fetchData(updatedInputArray)
+          .then((res) => {
+            addNewNode(res);
+          })
+          .catch((error) => {
+            console.error('API Request Error: ', error);
+          });
+        //Resets the input box to be empty
+        setInputValue('');
+      } else {
+        //alert('Input cannot be empty.');
+        addNewNode('Error: Input cannot be empty');
+      }
+    }
+  }
+
+@@ -119,6 +124,9 @@ export default function ChatBox() {
+      </div>
+      <div className={styles.chatScroll}>
+        {inputArray.map((message, index) => {
+          const hasPreviousPrompt = index > 0;
+          const hasNextPrompt = index < inputArray.length - 1;
+
+          if (index % 2 === 0) {
+            return (
+              <ChatInput
+  26 changes: 16 additions & 10 deletions26  
+components/ChatInput/index.tsx
+@@ -24,6 +24,7 @@ export default function ChatInput({
+}: ChatInputProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [inputValue, setInputValue] = useState(data);
+  const [validInput, setValidValue] = useState(true);
+  const indexVal: number = indexValue;
+  const chatTreeVar: Tree = chatTree;
+
+@@ -43,7 +44,14 @@ export default function ChatInput({
+  }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    const newValue = event.target.value;
+
+    if (newValue.trim() !== '') {
+      setInputValue(newValue);
+      setValidValue(true);
+    } else {
+      setValidValue(false);
+    }
+  };
+
+  const handleEditButtonClick = () => {
+@@ -66,16 +74,14 @@ export default function ChatInput({
+        />
+      ) : (
+        <div>
+          <p className={styles.responseText}>{inputValue}</p>
+          {validInput ? (
+            <p className={styles.responseText}>{inputValue}</p>
+          ) : (
+            <p className={styles.errorText}>Input value cannot be empty.</p>
+          )}
+          <button onClick={handleEditButtonClick}>Change Input</button>
+          <button onClick={() => changeChildAndRefreshArray(-1)}>
+            {' '}
+            GO BACK
+          </button>
+          <button onClick={() => changeChildAndRefreshArray(1)}>
+            {' '}
+            GO FORWARD{' '}
+          </button>
+          <button onClick={() => changeChildAndRefreshArray(-1)}>GO BACK</button>
+          <button onClick={() => changeChildAndRefreshArray(1)}>GO FORWARD</button>
+        </div>
+      )}
+    </div>
+  10 changes: 10 additions & 0 deletions10  
+components/ChatResponse/index.tsx
+@@ -36,6 +36,16 @@ export default function ChatResponse({
+    onUpdateInputArray(chatTreeVar);
+  }
+
+  const isInputValid = data.trim() !== '';
+
+  const sendReponseToAPI = () => {
+    if (isInputValid) {
+      console.log('Sending response to server:', data);
+    } else {
+      console.log('Invalid response data. Cannot send to API.');
+    }
+  }
+
+  return (
+    <div className={styles.inputText}>
+      <p>RESPONSE:</p>
+ Binary file addedBIN +17.3 KB 
+images/error404Smiley.png
+
+  6 changes: 3 additions & 3 deletions6  
+sprint1/git_blame.sh
+@@ -4,10 +4,10 @@
+
+#!/bin/bash
+
+author="Jason Choi"           # author you specifically want to look for
+folders=("../app/documentation" "../components/Markdown/dbAccess" "../app")  # folders you want to use git blame on; can take multiple folders
+author="Zackery Whitscell"           # author you specifically want to look for
+folders=("../app/documentation" "../components/ChatBox" "../app" "../components/ChatInput" "../components/ChatResponse")  # folders you want to use git blame on; can take multiple folders
+since="2023-10-16"            # start date
+until="2023-10-30"            # end date
+until="2023-11-1"            # end date
+
+# Iterate over each folder in the array
+for folder in "${folders[@]}"; do
+ 4 changes: 2 additions & 2 deletions4  
+sprint1/git_blame_powershell.ps1
+@@ -1,5 +1,5 @@
+$author = "EarlTheUnicorn"
+$folders = @("./app/chat","./app/chat/[id]","./components/ChatPageNavbar", "./pages/api/dbAccess/endpoint", "./pages/api/dbAccess")
+$author = "Zackery Whitscell"
+$folders = @(("../app/documentation", "../components/ChatBox", "../app", "../components/ChatInput", "../components/ChatResponse"))
+$since = "2023-10-16"
+$until = "2023-11-01"
+
+ 50 changes: 50 additions & 0 deletions50  
+sprint2/zwhitsce.md
+@@ -0,0 +1,50 @@
+# Sprint 2
+
+Zackery Whitscell | zwhitsce | RecurseAI
+
+### What you planned to do
+
+- I planned to help Bryce with the chat-box and getting the chat outputs into the database
+- I planned to implent a chat history that is scrollable and accessible
+- I planned to fix my regenerate button from the first sprint to better work and be correct
+- I planned to create a 404 error page
+- I planned to help implement error checking on input strings
+- I planned to fix the 'Go back' and 'Go forward' buttons once the database was established
+
+### What you did not do
+
+- I did not fully implement a scrollable chat history.
+- I did not fully fix the chat page to my liking.
+- I did not fix the 'Go back' and 'Go forward' buttons between prompts
+
+### What problems you encountered
+
+- Still a huge learning curve with everything importing new technologies and implementations
+- Trying to make all the technologies work together was challenging
+- I struggled with time management with my life outside of class
+- I hoped for more colloboration between the team members but found myself working alone due to my lack of reaching out
+
+### Issues you worked on
+
+[#3](https://github.com/utk-cs340-fall23/recurseAI/issues/3)
+[#4](https://github.com/utk-cs340-fall23/recurseAI/issues/4)
+[#5](https://github.com/utk-cs340-fall23/recurseAI/issues/5)
+[#28](https://github.com/utk-cs340-fall23/recurseAI/issues/28)
+[#34](https://github.com/utk-cs340-fall23/recurseAI/issues/34)
+[#40](https://github.com/utk-cs340-fall23/recurseAI/issues/40)
+[#44](https://github.com/utk-cs340-fall23/recurseAI/issues/44)
+
+### Files you worked on
+
+- `images`
+- `app\not-found.tsx`
+- `components\ChatBox\index.tsx`
+- `components\ChatInput\index.tsx`
+- `components\ChatResponse\index.tsx`
+
+### What you accomplished
+
+I accomplished being a support resource when working on the chat page and helping to modernize it to our current implementation
+I did accomplish preventing the user from entering in some problematic strings to the text box.
+I did put some text on the Error 404 page and implemented an image
+I prevented the buttons from appearing for the user between prompts
+
+@@ -1,7 +1,7 @@
+.responseText, .inputText {
+  color: white;
+  width: 100%;
+
+  padding: 5px;
+}
+.responseText {
+  background-color: #617562;
+@@ -34,28 +34,23 @@
+}
+
+.chatSection {
+  /* display: flex;
+  width: calc(100% - 260px);
+  height: 95vh;
+  justify-content: center;
+  bottom: 0;
+  position: fixed;
+  overflow-y: auto; */
+  flex-grow: 1; /* Takes up the remaining width */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  justify-content: end;
+  width: 100%;
+  overflow-y: auto;
+
+}
+
+.chatScroll {
+  overflow-y: auto;
+  flex-direction: column;
+  width: 100%;
+  /* height: 100%; */
+  flex-grow: 1;
+  max-height: calc(100vh - 150px - 100px);
+  padding-bottom: 150px;
+  padding-top: 100px;
+}
+
+.textBox{
+@@ -79,7 +74,6 @@
+  font-weight: 500;
+  cursor: pointer;
+  /* margin-left: 78%; */
+  margin-bottom: 16px;
+} 
+.button:hover{
+  background: #008168;
+@@ -106,15 +100,15 @@
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: inherit;
+  /* flex-shrink: 0; */
+  /* height: 125px; */
+  background-color: #d9d9d9;
+  height: 125px;
+}
+.header {
+  background-color: #666;
+  background-color: #d9d9d9;
+  padding: 10px;
+  flex-shrink: 0; /* Prevents shrinking */
+  position: fixed;
+  height: 50px;
+  top: 0;
+  width: 100%;
+}
+  9 changes: 7 additions & 2 deletions9  
+components/ChatInput/index.tsx
+@@ -62,9 +62,9 @@ export default function ChatInput({
+    setIsEditing(false);
+    onChangePreviousInput(inputValue, indexVal);
+  };
+
+  
+  return (
+    <div>
+    <div className={styles.responseText}>
+      {isEditing ? (
+        <input
+          type="data"
+@@ -73,12 +73,17 @@ export default function ChatInput({
+          onBlur={handleInputBlur}
+        />
+      ) : (
+<<<<<<< HEAD
+        <div>
+          {validInput ? (
+            <p className={styles.responseText}>{inputValue}</p>
+          ) : (
+            <p className={styles.errorText}>Input value cannot be empty.</p>
+          )}
+=======
+        <div >
+          <p>{inputValue}</p>
+>>>>>>> 7ee36b31ae32126170aedc8f5bcd7d38ec1493e0
+          <button onClick={handleEditButtonClick}>Change Input</button>
+          <button onClick={() => changeChildAndRefreshArray(-1)}>GO BACK</button>
+          <button onClick={() => changeChildAndRefreshArray(1)}>GO FORWARD</button>
+  2 changes: 1 addition & 1 deletion2  
+components/ChatPageNavbar/index.tsx
+@@ -86,7 +86,7 @@ type ChatDataResponse =
+  | string[]
+  | { error: string };
+
+const Navbar: React.FC = () => {
+const Navbar: React.FC= () => {
+  const { data: session } = useSession();
+  const router = useRouter();
+  //const { id } = router.query;

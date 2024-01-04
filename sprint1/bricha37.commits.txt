@@ -1,0 +1,78 @@
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500 1) .responseText {
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500 2)   color: white;
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500 3)   font-size: 1rem;
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500 4) }
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500  8) const Home = () => {
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500  9)   const { signInWithGoogle, signOut } = useAuth();
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 12)   const performActionandNavigate = async () => {
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 13)     try {
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 14)       await signOut();
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 15)       router.push('/');
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 16)     } catch (error) {
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 17)       console.error('Error performing action and signing out:', error);
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 18)     }
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 19)   };
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 21)   return (
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 22)     <div>
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 23)       <ChatBox />
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 25)       {/* <button onClick={performActionandNavigate}> Sign Out</button> */}
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 26)     </div>
+34ffe28c (brycerichards13  2023-10-05 10:53:56 -0500 27)   );
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 28) };
+d1d3d24c (brycerichards13  2023-10-13 12:26:01 -0500 30) export default Home;
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500  1) // Component for the chat box that will sit at the bottom of the page and receive input from the user
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500  2) import { useState, useEffect } from 'react';
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  3) import ChatInput from './chat-input';
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  4) import { fetchData } from './fetch-data';
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500  6) 
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500  7) export default function ChatBox(): JSX.Element {
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  8)   ('use client');
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  9)   const [data, setData] = useState('');
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 10)   const [inputValue, setInputValue] = useState('');
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 11) 
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500 12)   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500 13)     if (event.key === 'Enter') {
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 14)       console.log('inside: ', inputValue);
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 15)       fetchData(inputValue).then((res) => setData(res));
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500 16)     }
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500 17)   }
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500 18) 
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 19)   return (
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 20)     <div>
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 21)       <form action={fetchData}>
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 22)         <input
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 23)           onKeyDown={handleKeyDown}
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 24)           type={'data'}
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 25)           value={inputValue}
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 26)           onChange={(e) => setInputValue(e.target.value)}
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 27)         />
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 29)         {data && <ChatInput data={data} />}
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 30)       </form>
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 31)     </div>
+d1d3d24c components/chat-box.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 32)   );
+34ffe28c app/components/chat-box.tsx (brycerichards13 2023-10-05 10:53:56 -0500 33) }
+34ffe28c app/components/chat-input.tsx (brycerichards13 2023-10-05 10:53:56 -0500  1) // Component for received input that renders to the screen as text with the edit button
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  2) import styles from 'app/chat_page/page.module.css';
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  3) 
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  4) const ChatInput: React.FC<{ data: string }> = ({ data }) => {
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  5)   return (
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  6)     <div>
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  7)       <p className={styles.responseText}>{data}</p>
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  8)     </div>
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500  9)   );
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 10) };
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 11) 
+d1d3d24c components/chat-input.tsx     (brycerichards13 2023-10-13 12:26:01 -0500 12) export default ChatInput;
+34ffe28c app/components/chat-response.tsx (brycerichards13 2023-10-05 10:53:56 -0500  1) // Component for the LLM response to the user's input
+34ffe28c app/components/chat-response.tsx (brycerichards13 2023-10-05 10:53:56 -0500  2) // Needs to have a regenerate response function which calls the API
+34ffe28c app/components/chat-response.tsx (brycerichards13 2023-10-05 10:53:56 -0500  3) // Also needs the ability to swap back and forth between previous responses
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  1) 'use server';
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  2) import { PalmAiApiWrapper } from 'app/api/aiApiWrapper/PalmAiApiWrapper';
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  3) 
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  4) export async function fetchData(inputData: string) {
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  5)   console.log('INPUT DATA: ', inputData);
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  6)   const x = new PalmAiApiWrapper();
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  7)   const res = await x.prompt([inputData]);
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  8)   // console.log(res);
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500  9)   return res;
+d1d3d24c (brycerichards13 2023-10-13 12:26:01 -0500 11) }

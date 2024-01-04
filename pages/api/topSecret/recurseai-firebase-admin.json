@@ -1,0 +1,13 @@
+{
+  "type": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "project_id": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "private_key_id": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "private_key": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "client_email": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "client_id": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "INSERT YOUR VARIABLE IN THE QUOTATIONS",
+  "universe_domain": "googleapis.com"
+}

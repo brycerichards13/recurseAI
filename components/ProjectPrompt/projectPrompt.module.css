@@ -1,0 +1,8 @@
+.container {
+    min-height: 100vh;
+    background-color: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}

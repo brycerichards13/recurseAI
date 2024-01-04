@@ -1,0 +1,237 @@
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  11)   scroll-behavior: smooth;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  12)   overflow-x: hidden;
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500  37) import { titlePromptText } from 'lib/title-prompt';
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500  38) 
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500  67)   const [chatTitle, setChatTitle] = useState<string>('New Chat');
+00d48267 (brycerichards13         2023-12-01 22:15:36 -0500 191)   const toggleDarkMode = () => {
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 277)   const handleDragOver = useCallback(
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 278)     (event: React.DragEvent<HTMLTextAreaElement>) => {
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 279)       event.preventDefault();
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 280)     },
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 281)     [],
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 282)   );
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 283) 
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 432)   function createTitle() {
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 433)     const title: string = titlePromptText;
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 434) 
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 435)     const updatedInputArray: string[] = chatTree.returnStringArray();
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 436)     // Add titlePrompt to the array
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 437)     updatedInputArray.push(title);
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 438) 
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 439)     // Calls a server function from a separate file (because it's asynchronous and the component were currently in is a client component)
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 440)     // Awaits a response, then adds the new response to the tree
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 441)     fetchData(updatedInputArray)
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 442)       .then((response: string) => {
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 443)         setChatTitle(response);
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 444)         console.log(response);
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 445)       })
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 446)       .catch((error) => {
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 447)         console.error('API Request Error: ', error);
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 448)       });
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 449)   }
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 450) 
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 455)     if (newInputArray.length === 3 && chatTitle === 'New Chat') {
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 456)       createTitle();
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 457)     }
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 486)       const instruction =
+077769a1 (brycerichards13         2023-12-01 15:12:12 -0500 487)         'You are the AI. The user has provided you with a knowledge base and some input as a JSON object.\
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 502)           knowledge: knowledge,
+00d48267 (brycerichards13         2023-12-01 22:15:36 -0500 572) 
+b0a671b8 (brycerichards13         2023-12-01 22:00:07 -0500 579)         <h2 className={styles.title}>{chatTitle}</h2>
+00d48267 (brycerichards13         2023-12-01 22:15:36 -0500 580)         <ToggleSwitch darkMode={darkMode} onChange={toggleDarkMode} />
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 639)         Knowledge Base:
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 641)           <button
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 642)             key={index}
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 643)             className={styles.fileButton}
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 644)             onClick={() => handleDeleteFile(index)}
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 645)           >
+288a7aba (brycerichards13         2023-12-01 15:11:08 -0500 677)               placeholder={isDragOver ? 'Drag and drop file' : 'Ask Away...'} // Conditional placeholder
+b2953857 (brycerichards13       2023-12-01 16:14:52 -0500   7)   overflow-x: hidden;
+b2953857 (brycerichards13       2023-12-01 16:14:52 -0500   8)   overflow-y: scroll;
+b2953857 (brycerichards13       2023-12-01 16:14:52 -0500 162) .history:hover {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500  39)   const [loadingBool, setLoadingBool] = useState<boolean>(false);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  63)       throw new Error('No JSON found in the input');
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  74)       console.log(data);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  80) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500  85)       setLoadingBool(true);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  99)             setDetailArray(
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 100)               result.actions.map((actionItem) => actionItem.details),
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 101)             );
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 103)             setLoadingBool(false);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 124)   useEffect(() => {
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 125)     const className = styles.animateUpElement;
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 126)     console.log('className: ', className);
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 127)     const elements = document.querySelectorAll(`.${className}`);
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 128) 
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 129)     elements.forEach((elem, index) => {
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 130)       setTimeout(() => {
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 131)         // Add the class from your CSS module
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 132)         elem.classList.add(styles.revealUp);
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 133)       }, 300 * index);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 134)     });
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 135)   }, []);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 136) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 138)     <div className={styles.pageContainer}>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 146)       {emptyProjectBool === true && loadingBool == false ? (
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 147)         <div className={styles.centerGuidingText}>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 148)           <div style={{ overflowY: 'hidden' }}>
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 149)             <h1 className={styles.animateUpElement}> Create a project</h1>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 150)           </div>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 151)           <div style={{ overflowY: 'hidden' }}>
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 152)             <h3 className={styles.animateUpElement}>One step at a time...</h3>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 153)           </div>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 154)         </div>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 155)       ) : null}
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 157)       {/* Loading Animation */}
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 158)       {loadingBool === true ? (
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 159)         <div className={styles.loader}>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 160)           <span></span>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 161)           <span></span>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 162)           <span></span>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 163)           <span></span>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 164)         </div>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 165)       ) : null}
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 166) 
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 167)       <footer className={styles.footer}>
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 168)         {loadingBool === true ? null : emptyProjectBool === true ? (
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 175)               placeholder="Enter your idea here..."
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 180)           <div>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 181)             <button
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 182)               type="button"
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 183)               className={styles.button}
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 184)               onClick={() => regenerateResponse()}
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 185)             >
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 186)               <span className={styles.button__text}>Regenerate</span>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 187)               <span className={styles.button__icon}>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 188)                 <IonIcon icon={refresh} />
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 189)               </span>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 190)             </button>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 191) 
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 192)             <button onClick={handleChangeInputClick}>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 193)               Change Project Input
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 194)             </button>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 195)           </div>
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 202)           return (
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 203)             <ProjectPrompt
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 204)               key={index || 0}
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 205)               data={message || ''}
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 206)               detail={detailString}
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 207)             />
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 208)           );
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   1) .pageContainer {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   2)   display: flex;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   3)   flex-direction: column;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   4)   align-items: center;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   5)   height: 100vh;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   6) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500   7) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500  20)   background-color: #ffffff;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500  70)   width: 100%;
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500  71)   height: 8vh;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500  85)   /* min-height: 100vh; */
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  91) }
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  92) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500  93) /* --------------Center Text Guiding User---------------------- */
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500  94) .centerGuidingText {
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  95)   display: flex;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  96)   justify-content: center;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  97)   align-items: center;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  98)   flex-direction: column;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500  99) }
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 100) 
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 101) .animateUpElement {
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 102)   visibility: hidden;
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 103) }
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 104) 
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 105) @keyframes fadeInUp {
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 106)   from {
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 107)     opacity: 0;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 108)     transform: translateY(100px);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 109)   }
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 110)   to {
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 111)     opacity: 1;
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 112)     transform: translateY(0);
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 113)   }
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 114) }
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 115) 
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 116) .revealUp {
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 117)   animation: fadeInUp 1.4s cubic-bezier(0.64, 0.17, 0.48, 1.25) forwards;
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500 118)   visibility: visible;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 119) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 120) /* ------------------------------------------------------------ */
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 121) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 122) /* --------------------Loading Spinner------------------------- */
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 123) .loader {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 124)   position: relative;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 125)   width: 200px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 126)   height: 200px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 127)   border-radius: 50%;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 128)   /* background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd); */
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 129)   animation: animate 1.2s linear infinite;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 130)   display: flex;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 131)   align-items: center;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 132)   justify-self: center;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 133) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 134) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 135) @keyframes animate {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 136)   0% {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 137)     transform: rotate(0deg);
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 138)   }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 139)   100% {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 140)     transform: rotate(360deg);
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 141)   }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 142) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 143) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 144) .loader span {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 145)   position: absolute;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 146)   width: 100%;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 147)   height: 100%;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 148)   border-radius: 50%;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 149)   background: linear-gradient(
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 150)     rgb(141, 0, 188),
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 151)     rgb(24, 14, 87),
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 152)     rgb(141, 0, 188)
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 153)   );
+288a7aba (brycerichards13   2023-12-01 15:11:08 -0500 154) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 155) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 156) .loader span:nth-child(1) {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 157)   filter: blur(5px);
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 158) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 159) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 160) .loader span:nth-child(2) {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 161)   filter: blur(10px);
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 162) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 163) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 164) .loader span:nth-child(3) {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 165)   filter: blur(25px);
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 166) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 167) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 168) .loader span:nth-child(4) {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 169)   filter: blur(50px);
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 170) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 171) 
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 172) .loader:after {
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 173)   content: '';
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 174)   position: absolute;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 175)   top: 10px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 176)   left: 10px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 177)   right: 10px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 178)   bottom: 10px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 179)   background: #ffffff;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 180)   border: solid white 10px;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 181)   border-radius: 50%;
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 182) }
+2d562e8d (brycerichards13   2023-12-01 17:22:30 -0500 183) /* ------------------------------------------------------------ */
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  1) export const titlePromptText = `
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  2) for all responses to my queries, I require the information to be structured like a quote of a person.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  3) This format should be strictly adhered to, regardless of the nature of the query.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  4)   Rules for response:
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  5)     The start must be a quotation mark.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  6)     The end must be a quotation mark.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  7) 
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  8) You must look at the previous inputs and you are to respond with just the title that captures the essence of the paragraphs.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500  9) The response must be a single sentence, it could be a few words, it could be a few words.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500 10) It must not be more than 75 characters long.
+b0a671b8 (brycerichards13 2023-12-01 22:00:07 -0500 11) `;
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500  6) export default function ProjectChat() {
+b0a671b8 (brycerichards13   2023-12-01 22:00:07 -0500  9)       <ProjectPrompts />

@@ -1,0 +1,59 @@
+.markdown :global(h1) {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .markdown :global(h2) {
+    font-size: 1.75rem;
+    margin-top: 1rem;
+  }
+  
+  .markdown :global(p) {
+    margin: 1rem 0;
+  }
+  
+  .markdown :global(a) {
+    color: #a6b1e1;
+    text-decoration: none;
+  }
+  
+  .markdown :global(a:hover) {
+    text-decoration: underline;
+  }
+  
+  .markdown :global(ul),
+  .markdown :global(ol) {
+    padding-left: 1.5rem;
+  }
+  
+  .markdown :global(code) {
+    background-color: #424874;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .markdown th, .markdown td {
+    border: 1px solid ;
+    padding: 8px;
+  }
+  
+  .markdown th {
+    background-color: #25252b;
+    text-align: left;
+  }
+
+  .regularCode {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    overflow-x: auto;
+}

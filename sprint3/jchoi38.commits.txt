@@ -1,0 +1,334 @@
+45a3713e (Jason Choi       2023-11-14 22:12:45 -0500  14) import { materialOceanic } from 'react-syntax-highlighter/dist/esm/styles/prism';
+402678cc (Jason Choi       2023-11-07 10:22:26 -0500  15) import styles from '../ChatResponse/chatresponse.module.css';
+402678cc (Jason Choi       2023-11-07 10:22:26 -0500  56)     <div className={styles.responseText}>
+45a3713e (Jason Choi       2023-11-14 22:12:45 -0500  66)               className={styles.code}
+45a3713e (Jason Choi       2023-11-14 22:12:45 -0500  69)                 style={ materialOceanic }
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  83)       <div className={styles.responseFooter}>
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  99)       </div>
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  1) .responseText {
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  2)     color: white;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  3)     width: inherit;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  4)     border-radius: 10px;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500  5)     padding: 10px 20px 0 20px;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  6)     background-color: #537455;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  7)     align-self: flex-start;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  8)     margin-left: auto;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  9) }
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 10) .responseFooter {
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 11)     display: flex;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 12)     justify-content: left; /* This will space out your buttons evenly */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 13)     padding: 10px; /* Add some padding */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 14)     border-top: 1px solid #ccc; /* Optional: adds a line above the button area */  
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 15) }
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 16) .responseFooter button {
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 17)     margin: 0 5px; /* Space out buttons */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 18)     cursor: pointer; /* Changes the cursor to indicate it's clickable */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 19)     border: none;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 20)     background-color: inherit;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 21)     /* Add more styles as needed */
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 22) }
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 23) .code {
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 24)     border-radius: 15px;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 25) }
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 186)     <div>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 187)       <nav className={styles.nav}>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 189)           className={styles.newChat}
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 190)           onClick={() => {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 191)             void handleCreateChat();
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 192)           }}
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 194)           <span className={styles.button__icon}>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 195)             <IonIcon icon={add} />
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 197)           <span className={styles.button__text}> New Chat </span>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 199) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 200)         {chatIds.map((chatId) => (
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 201)           <button
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 203)             key={chatId}
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 204)             onClick={() => changeId(chatId)}
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 205)           >
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 206)             <span className={styles.history_icon}>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 207)               <IonIcon icon={chatboxOutline} />
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 208)             </span>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 209) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 210)             <span className={styles.history_text}>Chat: {chatId}</span>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 211)           </button>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 212)         ))}
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 213)       </nav>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 214)     </div>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   2) .sidebar {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   3)   width: 260px;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   4)   background-color: #191825;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   5)   height: 100vh;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   6)   left: 0;
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500   7)   overflow: hidden;
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500   8)   transition: width 0.3s ease;
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500   9) }
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  10) .sidebarclosed {
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  11)   width: 0;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  12) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  13) 
+402678cc (Jason Choi       2023-11-07 10:22:26 -0500   3) import styles from '../ChatInput/chatinput.module.css';
+^8d13622 (Jason Choi       2023-11-01 11:34:41 -0400  65) 
+402678cc (Jason Choi       2023-11-07 10:22:26 -0500  67)     <div className={styles.inputText}>
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  78)             <p className={styles.inputText}>{inputValue}</p>
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  82)           <div className={styles.inputFooter}>
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  83)             <button onClick={handleEditButtonClick}>
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  85)             </button>
+bc91c8a4 (Jason Choi       2023-11-07 15:23:10 -0500  99)           </div>
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  1) .inputText {
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  2)     color: white;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  3)     width: inherit;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  4)     border-radius: 10px;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500  5)     padding: 10px 20px 0 20px;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  6)     background-color: #60738b;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  7)     align-self: flex-start;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  8)     margin-left: auto;
+402678cc (Jason Choi 2023-11-07 10:22:26 -0500  9) }
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 10) .inputFooter {
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 11)     display: flex;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 12)     justify-content: left; /* This will space out your buttons evenly */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 13)     padding: 10px; /* Add some padding */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 14)     border-top: 1px solid #ccc; /* Optional: adds a line above the button area */  
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 15) }
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 16) .inputFooter button {
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 17)     margin: 0 5px; /* Space out buttons */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 18)     cursor: pointer; /* Changes the cursor to indicate it's clickable */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 19)     border: none;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 20)     background-color: inherit;
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 21)     /* Add more styles as needed */
+bc91c8a4 (Jason Choi 2023-11-07 15:23:10 -0500 22) }
+45a3713e (Jason Choi     2023-11-14 22:12:45 -0500 20)               <Link href="/docs/[slug]" as={'/docs/documentation'}>Documentation</Link>
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500   2) import { useState, useEffect, useRef } from 'react';
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  10) import { IonIcon } from '@ionic/react';
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  11) import { refresh } from 'ionicons/icons';
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  15) import styles from '../ChatBox/chatbox.module.css';
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500  23) interface ChatAreaProps {
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500  24)   toggleSidebar: () => void;
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  25)   isSidebarOpen: boolean; // Add this line to accept the new prop
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500  26) }
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500  27) 
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  28) export default function ChatBox({
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  29)   children,
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  30)   toggleSidebar,
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  31)   isSidebarOpen,
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  32) }: ChatAreaProps) {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  39)   const textareaRef = useRef(null); // Create a ref for the textarea
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  40) 
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  41)   // Function to resize the textarea
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  42)   // const resizeTextarea = () => {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  43)   //   const textarea = textareaRef.current;
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  44)   //   if (textarea) {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  45)   //     textarea.style.height = 'auto'; // Reset the height so the scrollHeight includes only the new text
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  46)   //     textarea.style.height = textarea.scrollHeight + 'px'; // Set the height to the scrollHeight
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  47)   //   }
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  48)   // };
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  49)   const resizeTextarea = () => {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  50)     const textarea = textareaRef.current;
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  51)     if (textarea) {
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  52)       // Temporarily shrink the textarea to get the correct new scrollHeight
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  53)       textarea.style.height = 'auto';
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  54)       // Calculate the new height (scrollHeight includes the height of the content)
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  55)       let newHeight = textarea.scrollHeight;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  56)   
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  57)       // Apply minimum and maximum height constraints
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  58)       newHeight = Math.max(newHeight, 0); // Replace 30 with your minimum height
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  59)       newHeight = Math.min(newHeight, 250); // Replace 250 with your maximum height
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  60)   
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  61)       // Set the new height
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  62)       textarea.style.height = `${newHeight}px`;
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  63)     }
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500  64)   };
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  65)   
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  66)   
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 133)     if (event.key === 'Enter' && !event.shiftKey) {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 151)         resetTextareaSize();
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 156)     } else if (event.key === 'Enter' && event.shiftKey) {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 157)       // Allow the newline to be added by not calling event.preventDefault()
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 158)       // The browser will handle inserting the newline
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 159)     }
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 160)   }
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 161)   const resetTextareaSize = () => {
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 162)     const textarea = textareaRef.current;
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 163)     if (textarea) {
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 164)       textarea.style.height = '0px'; // Set this to your desired minimum height
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 165)       // Reset the bottom of the chatBox if necessary
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 166)     }
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 167)   };
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 169)     <div className={styles.chatSection}>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 170)       <header className={styles.header}>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 171)         <button className={styles.expand_icon} onClick={toggleSidebar}>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 172)           <IonIcon icon={menu} />
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 173)         </button>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 174)         <h2 className={styles.title}>Title</h2>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 175)         <button className={styles.option__icon}>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 176)           <IonIcon icon={cog} />
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 177)         </button>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 178)       </header>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 179)       <main className={styles.chatScroll}>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 183) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 221)       </main>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 223)       <footer className={styles.footer}>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 224)         <button
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 225)           type="button"
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 226)           className={styles.button}
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 227)           onClick={() => regenerateResponse(inputArray.length - 1)}
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 228)         >
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 229)           <span className={styles.button__text}>Regenerate</span>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 230)           <span className={styles.button__icon}>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 231)             <IonIcon icon={refresh} />
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 232)           </span>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 233)         </button>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 234) 
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 235)         <form action={fetchData}>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 236)           <div className={styles.chatBox}>
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 237)             <textarea // Change this to textarea
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 238)               ref={textareaRef} // Attach the ref to the textarea
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 239)               onKeyDown={handleKeyDown}
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 240)               onInput={resizeTextarea} // Add the onInput event handler
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 241)               value={inputValue}
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 242)               onChange={(e) => setInputValue(e.target.value)}
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 243)               // style={{height: '0px'}}
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 244)               placeholder="Ask Away..."
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500 245)             />
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500 246)           </div>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 247)         </form>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 248)       </footer>
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   1) .chatSection {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   2)   flex-grow: 1;
+20a689df (Jason Choi     2023-11-14 10:07:36 -0500   3)   width: calc(100% - 260px);
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   4) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   5) .chatScroll {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   6)   overflow-y: auto;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   7)   height: calc(100% - 150px);
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   8) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500   9) .footer {
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  10)   position: relative;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  11)   display: flex;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  12)   justify-content: center;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  13)   align-items: flex-end; /* Keeps the textarea at the bottom */
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  14)   padding: 10px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  15)   min-height: 60px; /* Minimum height of the footer */
+45a3713e (Jason Choi     2023-11-14 22:12:45 -0500  16)   /* max-height: 100px; Maximum height of the footer */
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  17) }
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  18) .chatBox {
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  19)   width: 50vw;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  20)   min-height: 45px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  21)   max-height: none;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  22)   display: flex;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  23)   justify-content: center;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  24)   align-items: center;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  25) }
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  26) .footer textarea {
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  27)   width: 48vw;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  28)   position: fixed;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  29)   bottom: 12px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  30)   min-height: 30px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  31)   padding: 10px 20px 20px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  32)   border-radius: 20px;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  33)   max-height: 100px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  34)   resize: none;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  35)   box-sizing: border-box;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  36)   transition: height 0.5s ease-out;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  37)   color: white;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  38)   background-color: #191825;
+1320b828 (Jason Choi     2023-11-14 21:24:12 -0500  39)   scrollbar-width: none; /* For Firefox */
+1320b828 (Jason Choi     2023-11-14 21:24:12 -0500  40)   -ms-overflow-style: none; /* For Internet Explorer and Edge */
+45a3713e (Jason Choi     2023-11-14 22:12:45 -0500  41)   overflow-y: auto;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  42) }
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  43) .footer textarea:focus {
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  44)   outline: none; /* Removes the default focus outline */
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  45)   border: 1px solid transparent; /* Makes the border transparent on focus */
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  46) }
+1320b828 (Jason Choi     2023-11-14 21:24:12 -0500  47) .footer textarea::-webkit-scrollbar {
+1320b828 (Jason Choi     2023-11-14 21:24:12 -0500  48)   display: none; /* For Chrome, Safari, and Opera */
+1320b828 (Jason Choi     2023-11-14 21:24:12 -0500  49) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  50) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  94) .button {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  95)   display: inline-flex;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  96)   height: 45px;
+33f5f64e (Jason Choi     2023-11-14 20:09:05 -0500  97)   box-sizing: border-box;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  98)   padding: 0;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500  99)   background: #009578;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 100)   border-radius: 7px;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 101)   border: none;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 102)   outline: none;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 103)   overflow: hidden;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 104)   font-size: 14px;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 105)   font-weight: 500;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 106)   cursor: pointer;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 107) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 108) .button:hover {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 109)   background: #008168;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 110) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 111) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 112) .button:active {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 113)   background: #006e58;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 114) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 115) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 116) .button__text,
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 117) .button__icon {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 118)   display: inline-flex;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 119)   align-items: center;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 120)   padding: 0 12px;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 121)   color: #fff;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 122)   height: 100%;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 123) }
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 124) 
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 125) .button__icon {
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 126)   font-size: 1.3em;
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 127)   background: rgba(0, 0, 0, 0.08);
+402678cc (Jason Choi     2023-11-07 10:22:26 -0500 128) }
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 129) 
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 130) .header {
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 132)   padding: 10px;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 133)   max-height: 50px;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 134)   display: flex;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 135) }
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 136) .flipHorizontal {
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 137)   transform: scaleX(-1);
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 138) }
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 139) .title {
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 140)   display: flex;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 142)   padding: 0px 28px;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 143)   justify-content: center;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 144)   align-items: center;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 145)   flex: 1 0 0;
+bc91c8a4 (Jason Choi     2023-11-07 15:23:10 -0500 146)   align-self: stretch;
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500  2) import React, { useState } from 'react';
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500  6) import navBarCSS from 'components/ChatPageNavbar/index.module.css';
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500  8) export default function Chat({ params, children }) {
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500 10) 
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500 11)   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500 12)   const toggleSidebar = () => {
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500 13)     setIsSidebarOpen(!isSidebarOpen);
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500 14)   };
+b361c2ef (Jason Choi     2023-11-07 10:36:05 -0500 15) 
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 18)       <div className={`${navBarCSS.sidebar} ${!isSidebarOpen ? navBarCSS.sidebarclosed : ''}`}>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 19)         <NavBar />
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 20)       </div>
+112559c4 (Jason Choi     2023-11-07 13:32:42 -0500 21)       <ChatBox toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen}>{children}</ChatBox>
+33f5f64e (Jason Choi       2023-11-14 20:09:05 -0500  8)     'https://www.geeksforgeeks.org/introduction-to-hashing-data-structure-and-algorithm-tutorials/?ref=ghm',
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  1) First, run the development server:
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  2) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  3) ```bash
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  4) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  5) npm run dev
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  6) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  7) # or
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  8) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500  9) yarn dev
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 10) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 11) # or
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 12) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 13) pnpm dev
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 14) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 15) # or
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 16) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 17) bun dev
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 18) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 19) ```
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 20) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 21) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 22) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 23) You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 24) 
+45a3713e (Jason Choi 2023-11-14 22:12:45 -0500 25) This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.

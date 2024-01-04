@@ -1,0 +1,143 @@
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500  2) import React, { useState } from 'react';
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500  6) import navBarCSS from 'components/ChatPageNavbar/index.module.css';
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500  7) 
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500  8) export default function Chat({ params, children }) {
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500  9)   const id = params.id;
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 10) 
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 11)   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 12)   const toggleSidebar = () => {
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 13)     setIsSidebarOpen(!isSidebarOpen);
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 14)   };
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 18)       <div className={`${navBarCSS.sidebar} ${!isSidebarOpen ? navBarCSS.sidebarclosed : ''}`}>
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 21)       <ChatBox toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen}>{children}</ChatBox>
+68ccceca (Austin Gilbert 2023-11-14 13:51:05 -0500 24) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  1) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  2) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  3) .responseText {
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  4)   color: black;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  5)   font-size: 1rem;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  6) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  7) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  8) .main {
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  9)   overflow: hidden;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 10)   width: 100vw;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 11)   height: 100vh;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 12)   display: flex;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 13)   z-index: 0;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 14)   position: relative;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 15)   background-color: #d9d9d9;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 16) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 17) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 18) .sidebar {
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 19)   width: 260px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 20)   background-color: #191825;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 21)   height: 100vh;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 22) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 23) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 24) .chatSection {
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 25)   display: flex;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 26)   overflow-y: auto;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 27)   width: calc(100% - 260px);
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 28)   justify-content: center;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 29)   align-items: end;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 30) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 31) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 32) .inputContainer{
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 33)   display: flex;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 34)   margin-top: 10px
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 35) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 36) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 37) .inputBox ChatBox{
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 38)   flex: 1;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 39)   padding: 10px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 40)   border: 1px solid #ccc;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 41)   border-radius: 5px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 42)   outline: none;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 43) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 44) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 45) .chatScroll {
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 46)   display: flex;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 47)   overflow-y: auto;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 48)   flex-direction: column;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 49) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 50) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 51) /*input{
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 52)   flex: 1;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 53)   padding: 5px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 54)   border: 1px solid #ccc;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 55)   border-radius: 5px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 56) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 57) }*/
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  56) /* Options Button and Navbar button */
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  57) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  58) .option__icon {
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  59)   margin-top: 10px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  60)   margin-left: auto;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  61)   cursor: pointer;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  62)   border: none;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  63)   outline: none;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  64)   padding: 0;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  65)   font-size: 30px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  66)   background: transparent;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  67)   color: white;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  68)   height: fit-content;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  69)   width:fit-content;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  70)   position: relative;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  71) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  72) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  73) .option__icon:hover{
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  74)   color:#d9d9d9
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  75) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  76) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  77) .expand_icon{
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  78)   margin-top: 10px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  79)   margin-right: auto;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  80) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  81)   width:fit-content;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  82)   height: fit-content;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  83)   border: none;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  84)   outline: none;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  85) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  86)   color: white;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  87)   cursor: pointer;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  88)   font-size: 30px;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  89)   line-height: 1;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  90)   background: transparent;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  91)   align-items: center;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  92) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  93) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  94) .expand_icon:hover{
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  95)   outline: auto;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  96) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  97) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  98) 
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 136)   background-color: #191825;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 146)   color: white;
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500 152) }
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  12) import { cog } from 'ionicons/icons';
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  13) import { menu } from 'ionicons/icons';
+74dcc1c9 (Austin Gilbert 2023-11-14 13:38:17 -0500  16) import { settings } from 'firebase/analytics';
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 161) .history:hover{
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 164) 
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 177) 
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 178) .active {
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 179)   background: #43434f;
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 180) }
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500   9) import { useSearchParams } from 'next/navigation';
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500  96)   const searchParams = useSearchParams();
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500  97)   const currentChatId = searchParams?.get('id');
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500  98) 
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 100)     if(searchParams !== null){
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 101)       const newSearchParams = new URLSearchParams(searchParams);
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 102)       newSearchParams.set('id', newId);
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 103) 
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 104)       const searchString = newSearchParams.toString();
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 105)       router.push(`/chat/id?${searchString}`);
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 106)     }else{
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 107)       console.error('Search params is null');
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 108)     }
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 109)   };
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 110) 
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 111)   const isActiveChat = (buttonId: string) => {
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 112)     return buttonId === currentChatId;
+1a684bf4 (Austin Gilbert 2023-11-13 16:47:27 -0500 202)             className={`${styles.history} ${isActiveChat(chatId) ? styles.active: ''}`}

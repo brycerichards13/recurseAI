@@ -1,0 +1,769 @@
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  4) // Component for the LLM response to the user's input
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  5) // Needs to have a regenerate response function which calls the API
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  6) // Also needs the ability to swap back and forth between previous responses
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  7) 
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  9) 
+17ef9ea2 components/ChatResponse/index.tsx (Jason Choi       2023-10-31 12:42:06 -0400 15) import styles from 'app/chat/page.module.css';
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 39)   return (
+d85a0e59 components/ChatResponse/index.tsx (Jason Choi       2023-10-31 10:28:21 -0400 40)     <div className={styles.inputText}>
+53dce203 components/chat-response.tsx      (Jason Choi       2023-10-26 15:33:18 -0400 41)       <p>RESPONSE:</p>
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 71)     </div>
+^7abf2b0 components/chat-response.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 72)   );
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400  1) import React from 'react';
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400  2) import ReactMarkdown from 'react-markdown';
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400  3) import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400  7) 
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400  8) interface MarkdownContentProps {
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400  9)   children: string;
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 10) }
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 11) 
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 12) const MarkdownContent: React.FC<MarkdownContentProps> = ({ children }) => {
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 13)   const components = {
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 14)     code({ node, inline, className, children, ...props }) {
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 15)       const match = /language-(\w+)/.exec(className || '');
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 16)       return !inline && match ? (
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 17)         <SyntaxHighlighter style={okaidia} language={match[1]} PreTag="div" {...props}>
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 18)           {String(children).replace(/\n$/, '')}
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 19)         </SyntaxHighlighter>
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 20)       ) : (
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 21)         <code className={className} {...props}>
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 22)           {children}
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 23)         </code>
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 24)       );
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 25)     },
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 26)   };
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 27) 
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 28)   return (
+09bd64b1 components/Markdown/index.tsx (Jason Choi       2023-10-30 14:14:02 -0400 29)     <div className={styles.markdown}>
+d85a0e59 components/Markdown/index.tsx (Jason Choi       2023-10-31 10:28:21 -0400 31)         {children}
+d85a0e59 components/Markdown/index.tsx (Jason Choi       2023-10-31 10:28:21 -0400 32)       </ReactMarkdown>
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 33)     </div>
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 34)   );
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 35) };
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 36) 
+1e22d35f components/markdown.jsx       (Jason Choi       2023-10-26 15:57:59 -0400 37) export default MarkdownContent;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  1) .markdown :global(h1) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  2)     font-size: 2rem;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  3)     margin-top: 1rem;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  4)   }
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  5)   
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  6)   .markdown :global(h2) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  7)     font-size: 1.75rem;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  8)     margin-top: 1rem;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400  9)   }
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 10)   
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 11)   .markdown :global(p) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 12)     margin: 1rem 0;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 13)   }
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 14)   
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 15)   .markdown :global(a) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 16)     color: #a6b1e1;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 17)     text-decoration: none;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 18)   }
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 19)   
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 20)   .markdown :global(a:hover) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 21)     text-decoration: underline;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 22)   }
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 23)   
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 24)   .markdown :global(ul),
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 25)   .markdown :global(ol) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 26)     padding-left: 1.5rem;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 27)   }
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 28)   
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 29)   .markdown :global(code) {
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 30)     background-color: #424874;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 31)     padding: 0.2rem 0.5rem;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 32)     border-radius: 3px;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 33)     font-family: 'Courier New', Courier, monospace;
+09bd64b1 components/Markdown/markdownStyles.module.css (Jason Choi 2023-10-30 14:14:02 -0400 34)   }
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 35)   .markdown table {
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 36)     width: 100%;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 37)     border-collapse: collapse;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 38)     margin-top: 20px;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 39)   }
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 40)   
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 41)   .markdown th, .markdown td {
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 42)     border: 1px solid ;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 43)     padding: 8px;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 44)   }
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 45)   
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 46)   .markdown th {
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 47)     background-color: #25252b;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 48)     text-align: left;
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 49)   }
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 50) 
+d85a0e59 components/Markdown/index.module.css          (Jason Choi 2023-10-31 10:28:21 -0400 51)   
+2a6b62a2 components/chat-page-navbar.tsx     (Jason Choi       2023-10-22 22:17:06 -0400 189) };
+2a6b62a2 components/chat-page-navbar.tsx     (Jason Choi       2023-10-22 22:17:06 -0400 191) export default Navbar;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   1)   /* Landing page Horizontal Navigation Bar */
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   2)   .navbar {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   3)     background-color: #191825;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   4)     color: #fff;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   5)     padding: 1rem;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   6)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   7)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   8)   .container {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400   9)     max-width: 90vw;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  10)     margin: 0 auto;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  11)     display: flex;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  12)     justify-content: space-between;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  13)     align-items: center;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  14)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  15)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  16)   .left {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  17)     display: flex;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  18)     align-items: center;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  19)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  20)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  21)   .brand a {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  22)     color: #E6FFFC;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  23)     text-decoration: none;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  24)     font-weight: bold;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  25)     font-size: 2.25rem;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  26)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  27)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  28)   .right {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  29)     display: flex;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  30)     gap: 40px;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  31)     align-items: center;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  32)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  33)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  34)   .action {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  35)     display: flex;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  36)     align-items: center; 
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  37)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  38)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  39)   .action a {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  40)     color: #E6FFFC;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  41)     text-decoration: none;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  42)     font-weight: bold;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  43)     font-size: 1.25rem;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  44)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  45)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  46)   .action a:hover {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  47)     text-decoration: underline;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  48)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  49)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  50)   .documentation {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  51)     background-color: #43434F;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  52)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  53)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  54)   .account {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  55)     background-color: #865DFF;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  56)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  57)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  58)   .button {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  59)     border-radius: 12px;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  60)     color: #fff;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  61)     border: none;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  62)     padding: 0.5rem 1rem;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  63)     font-weight: bold;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  64)     font-size: 1rem;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  65)     cursor: pointer;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  66)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  67)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  68)   .button:hover {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  69)     text-decoration: none;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  70)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  71)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  72)   .iconTextContainer {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  73)     display: flex;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  74)     align-items: center;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  75)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  76)   
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  77)   .icon {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  78)     margin-left: 10px;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  79)   }
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  80) 
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  81)   /* Chat page Vertical Navigation Bar */
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  82)   .nav {
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  83)     flex-shrink: 0;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  84)     overflow-x: hidden;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  85)     width: inherit;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  86)     height: inherit;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  87)     background-color: #191825;
+2a6b62a2 components/navbar.module.css               (Jason Choi     2023-10-22 22:17:06 -0400  88)     color: #E6FFFC;
+^7abf2b0 components/chat-input.tsx      (Jason Choi        2023-10-16 10:30:53 -0400  1) // Component for received input that renders to the screen as text with the edit button
+^7abf2b0 components/chat-input.tsx      (Jason Choi        2023-10-16 10:30:53 -0400  4) 
+^7abf2b0 components/chat-input.tsx      (Jason Choi        2023-10-16 10:30:53 -0400 58)   return (
+^7abf2b0 components/chat-input.tsx      (Jason Choi        2023-10-16 10:30:53 -0400 59)     <div>
+^7abf2b0 components/chat-input.tsx      (Jason Choi        2023-10-16 10:30:53 -0400 81)     </div>
+^7abf2b0 components/chat-input.tsx      (Jason Choi        2023-10-16 10:30:53 -0400 82)   );
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400  2) import Link from 'next/link';
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400  8) 
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400  9)   return (
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 10)     <nav className={styles.navbar}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 11)       <div className={styles.container}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 12)         <div className={styles.left}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 13)           <div className={styles.brand}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 14)             <Link href="/">RecurseAI</Link>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 15)           </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 16)         </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 17)         <div className={styles.right}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 18)           <div className={styles.action}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 19)             <div className={`${styles.button} ${styles.documentation}`}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 20)               <Link href="/documentation">Documentation</Link>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 21)             </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 22)           </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 23)           <div className={styles.action}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 24)             <div className={`${styles.button} ${styles.account}`}>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 26)             </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 27)           </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 28)         </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 29)       </div>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 30)     </nav>
+^7abf2b0 components/landing-page-navbar.tsx     (Jason Choi       2023-10-16 10:30:53 -0400 31)   );
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400   2) import { useState, useEffect } from 'react';
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  12) 
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  29) 
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  94)   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400  95)     if (event.key === 'Enter') {
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 112)     }
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 113)   }
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 114) 
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 115)   return (
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 116)     <div>
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 180)     </div>
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 181)   );
+^7abf2b0 components/chat-box.tsx      (Jason Choi       2023-10-16 10:30:53 -0400 182) }
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  1) .border {
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  2)     background-color: #43434f;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  3)     height: 4px;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  4)     width: 100vw;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  5) }
+d85a0e59 (Jason Choi 2023-10-31 10:28:21 -0400  6) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  7) .box {
+d85a0e59 (Jason Choi 2023-10-31 10:28:21 -0400  8)   color: #ecf0ff;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  9)   border: 4px solid #43434f;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 10)   border-radius: 10px;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 11)   background-color: #2f3137;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 12)   padding: 10px;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 13)   margin: 50px;
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 14) }
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  1) First, run the development server:
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  2) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  3) ```bash
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  4) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  5) npm run dev
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  6) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  7) # or
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  8) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400  9) yarn dev
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 10) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 11) # or
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 12) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 13) pnpm dev
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 14) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 15) # or
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 16) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 17) bun dev
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 18) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 19) ```
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 20) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 21) Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 22) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 23) You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 24) 
+09bd64b1 (Jason Choi 2023-10-30 14:14:02 -0400 25) This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  1) import Navbar from 'components/LandingPageNavbar';
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  2) import styles from 'app/documentation/page.module.css';
+d85a0e59 (Jason Choi       2023-10-31 10:28:21 -0400  4) import documentationFile from 'app/documentation/documentation.md';
+d85a0e59 (Jason Choi       2023-10-31 10:28:21 -0400  5) import contributorFile from 'app/documentation/contributor.md';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8)   return (
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)   );
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19) }
+Binary file (standard input) matches
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  1) 'use client';
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  2) import { useEffect } from 'react';
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  4) const TestPage = () => {
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  5)   console.log('first');
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  6)   useEffect(() => {
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  7)     console.log('second');
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  8)     const testFunctions = async () => {
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  9)       try {
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 10)         const res = await fetch('/api/createChat');
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 11)         const { chatId } = await res.json();
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 12)         console.log('Chat ID:', chatId);
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 13)       } catch (error) {
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 14)         console.error('Error during testing:', error);
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 15)       }
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 16)     };
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 17) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 18)     void testFunctions();
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 19)   }, []);
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 20) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 21)   return null;
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 22) };
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 23) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 24) export default TestPage;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400  2)   color: white;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 11) }
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 12) 
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 13) .inputText {
+17ef9ea2 app/chat/page.module.css      (Jason Choi        2023-10-31 12:42:06 -0400 14)   background-color: #537455;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 16)   align-self: flex-start;
+^7abf2b0 app/chat_page/page.module.css (Jason Choi        2023-10-16 10:30:53 -0400 17) }
+17ef9ea2 app/chat/page.module.css      (Jason Choi        2023-10-31 12:42:06 -0400 19) 
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 20) .main {
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 21)   overflow: hidden;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 22)   width: 100vw;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 23)   height: 100vh;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 24)   display: flex;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 26)   position: relative;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 28) }
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 30) .sidebar {
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 31)   width: 260px;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 32)   background-color: #191825;
+2a6b62a2 app/chat_page/page.module.css (Jason Choi        2023-10-22 22:17:06 -0400 33)   height: 100vh;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 42)   overflow-y: auto;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 48)   width: 100%;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 49)   height: 100%;
+d85a0e59 app/chat/page.module.css      (Jason Choi        2023-10-31 10:28:21 -0400 95) }
+^7abf2b0 app/chat_page/page.tsx (Jason Choi       2023-10-16 10:30:53 -0400  1) 'use client';
+^7abf2b0 app/chat_page/page.tsx (Jason Choi       2023-10-16 10:30:53 -0400  5) 
+^7abf2b0 app/chat_page/page.tsx (Jason Choi       2023-10-16 10:30:53 -0400  7)   return (
+2a6b62a2 app/chat_page/page.tsx (Jason Choi       2023-10-22 22:17:06 -0400  8)     <main className={styles.main}>
+2a6b62a2 app/chat_page/page.tsx (Jason Choi       2023-10-22 22:17:06 -0400  9)       <div className={styles.sidebar}>
+2a6b62a2 app/chat_page/page.tsx (Jason Choi       2023-10-22 22:17:06 -0400 10)         <NavBar />
+2a6b62a2 app/chat_page/page.tsx (Jason Choi       2023-10-22 22:17:06 -0400 11)       </div>
+2a6b62a2 app/chat_page/page.tsx (Jason Choi       2023-10-22 22:17:06 -0400 12)     </main>
+^7abf2b0 app/chat_page/page.tsx (Jason Choi       2023-10-16 10:30:53 -0400 13)   );
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400   1) .border {
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400   3)   height: 4px;
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400   4)   width: 100vw;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400   5) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400   6) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400   7) .navbar {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400   8)   background-color: #191825;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400   9)   color: #fff;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  10)   padding: 1rem;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  11) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  12) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  13) .container {
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  14)   max-width: 90vw;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  15)   margin: 0 auto;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  16)   display: flex;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  17)   justify-content: space-between;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  18)   align-items: center;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  19) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  20) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  21) .left {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  22)   display: flex;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  23)   align-items: center;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  24) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  25) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  26) .brand a {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  28)   text-decoration: none;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  29)   font-weight: bold;
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  30)   font-size: 2.25rem;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  31) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  32) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  33) .right {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  34)   display: flex;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  35)   gap: 40px;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  36)   align-items: center;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  37) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  38) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  39) .action {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  40)   display: flex;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  42) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  43) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  44) .action a {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  46)   text-decoration: none;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  47)   font-weight: bold;
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  48)   font-size: 1.25rem;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  49) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  50) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  51) .action a:hover {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  52)   text-decoration: underline;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  53) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  54) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  55) .documentation {
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  56)   background-color: #43434f;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  57) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  58) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  59) .account {
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  60)   background-color: #865dff;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  61) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  62) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  63) .button {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  64)   border-radius: 12px;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  65)   color: #fff;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  66)   border: none;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  67)   padding: 0.5rem 1rem;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  68)   font-weight: bold;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  69)   font-size: 1rem;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  70)   cursor: pointer;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  71) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  72) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  73) .button:hover {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  74)   text-decoration: none;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  75) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  76) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  77) .iconTextContainer {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  78)   display: flex;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  79)   align-items: center;
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  80)   justify-content: flex-start;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  81) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  82) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  83) .icon {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  84)   margin-left: 10px;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  85) }
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  86) 
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  87) .content {
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  88)   flex-grow: 1;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  89)   display: flex;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  91)   gap: 10px;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  92)   align-items: flex-start;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  93)   justify-content: center;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  95)   padding-left: 5vw;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  96)   background-color: transparent;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  97) }
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  98) 
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  99) .containerText {
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 101) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  1) import './globals.css';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import type { Metadata } from 'next';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) import { Inter } from 'next/font/google';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6) const inter = Inter({ subsets: ['latin'] });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8) export const metadata: Metadata = {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9)   title: 'Create Next App',
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)   description: 'Generated by create next app',
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11) };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13) export default function RootLayout({
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14)   children,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15) }: {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)   children: React.ReactNode;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17) }) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)   return (
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)     <html lang="en">
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23)     </html>
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24)   );
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25) }
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  1) // Import the functions you need from the SDKs you need
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  2) import { initializeApp } from 'firebase/app';
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  3) import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  4) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  5) // https://firebase.google.com/docs/web/setup#available-libraries
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400  6) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 18) // Initialize Firebase
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 19) const app = initializeApp(firebaseConfig);
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 20) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 21) // Get Auth instance
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 22) const auth = getAuth(app);
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 23) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 24) // Initialize GoogleAuthProvider
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 25) const googleProvider = new GoogleAuthProvider();
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 26) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 27) export { auth, googleProvider };
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 1) export abstract class AiApiWrapper {
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 2)   abstract prompt(messages: string[]): Promise<string>;
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 3) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import { DiscussServiceClient } from '@google-ai/generativelanguage';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) import { GoogleAuth } from 'google-auth-library';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5) export class PalmAiApiWrapper extends AiApiWrapper {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   private MODEL_NAME = 'models/chat-bison-001';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7)   private PALMAI_KEY = process.env.PALMAI_KEY || '';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8)   private TEMPERATURE = 0.5;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9)   private CANDIDATE_COUNT = 1;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)   private client: DiscussServiceClient;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12)   constructor() {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13)     super();
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14)     this.client = new DiscussServiceClient({
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)       authClient: new GoogleAuth().fromAPIKey(this.PALMAI_KEY),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)     });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17)   }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)   async prompt(messages: string[]): Promise<string> {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)     const normalized_messages = messages.map((msg) => ({ content: msg }));
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 22)     const result = await this.client.generateMessage({
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23)       model: this.MODEL_NAME,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24)       temperature: this.TEMPERATURE,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25)       candidateCount: this.CANDIDATE_COUNT,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 26)       prompt: {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 27)         messages: normalized_messages,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 28)       },
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 29)     });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 30) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 31)     return result?.[0]?.candidates?.[0]?.content ?? 'Error generating message.';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 32)   }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 33) }
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400  1) 'use server';
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400  2) import { PalmAiApiWrapper } from 'app/api/aiApiWrapper/PalmAiApiWrapper';
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400  8)   console.log('INPUT DATA: ', inputData);
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400  9)   const x = new PalmAiApiWrapper();
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400 12)   return res;
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400 13)   // add data to database for regeneration and selecting point of entry for prompts
+^7abf2b0 components/fetch-data.ts (Jason Choi      2023-10-16 10:30:53 -0400 14) }
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 1) import { Firestore } from '@google-cloud/firestore';
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 2) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 3) const firestore = new Firestore({
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 4)   projectId: 'recurseai-b9e9c',
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 5)   keyFilename:
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 7) });
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 8) 
+^7abf2b0 (Jason Choi 2023-10-16 10:30:53 -0400 9) export default firestore;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import { Timestamp, FieldValue } from '@google-cloud/firestore';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) interface MessageData {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5)   author: 'User' | 'AI';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   versionsOfMessages: VersionOfMessage[];
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9) interface VersionOfMessage {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)   sentTime: Timestamp;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11)   content: string;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14) async function addMessageToChat(
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)   chatId: string,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)   author: 'User' | 'AI',
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17) ): Promise<string> {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)   const messageData: MessageData = {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)     author: author,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)     versionsOfMessages: [],
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21)   };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 22) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23)   const messageRef = await firestore.collection('messages').add(messageData);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25)   await firestore
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 26)     .collection('chats')
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 27)     .doc(chatId)
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 28)     .update({
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 29)       messages: FieldValue.arrayUnion(messageRef.id),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 30)       lastUsedDate: Timestamp.now(),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 31)     });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 32) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 33)   return messageRef.id;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 34) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 35) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 36) export { addMessageToChat };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  1) import { NextApiRequest, NextApiResponse } from 'next';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) export default async function handler(
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5)   req: NextApiRequest,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   res: NextApiResponse,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7) ): Promise<void> {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8)   try {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9)     if (req.method === 'POST') {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)       const chatId = await createNewChat();
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11)       res.status(200).json({ chatId });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12)     } else if (req.method === 'GET') {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13)       res.status(200).json({ message: 'Chat API Endpoint' });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14)     } else {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)       res.status(405).end(); // Method Not Allowed
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)     }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17)   } catch (error: unknown) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)     console.error(error);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)     res.status(500).json({ error: 'Internal Server Error' });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)   }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  1) import type { NextApiRequest, NextApiResponse } from 'next';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) // Define the expected request body type
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5) interface MessageBody {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   author: 'User' | 'AI';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9) export default async function handler(
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)   req: NextApiRequest,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11)   res: NextApiResponse,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12) ) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13)   try {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14)     if (req.method === 'POST') {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)       const { author } = req.body as MessageBody;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)       const chatId = req.query.chatId as string;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)       // Validate chatId and author
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)       if (
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)         typeof chatId !== 'string' ||
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21)         !(author === 'User' || author === 'AI')
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 22)       ) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23)         return res.status(400).json({ error: 'Invalid input' });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24)       }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 26)       const messageId = await addMessageToChat(chatId, author);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 27)       return res.status(200).json({ messageId });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 28)     }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 29) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 30)     return res.status(405).end(); // Method Not Allowed
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 31)   } catch (error) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 32)     console.error(error);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 33)     return res.status(500).json({ error: 'Internal Server Error' });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 34)   }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 35) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  1) // Import Next.js types
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import type { NextApiRequest, NextApiResponse } from 'next';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5) // Define the expected request body type
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6) interface VersionBody {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7)   messageId: string;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8)   content: string;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11) export default async function handler(
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12)   req: NextApiRequest,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13)   res: NextApiResponse,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14) ) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)   try {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)     if (req.method === 'POST') {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17)       // Validate and cast the request body
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)       const { messageId, content } = req.body as VersionBody;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)       // Basic input validation
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21)       if (typeof messageId !== 'string' || typeof content !== 'string') {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 22)         return res.status(400).json({ error: 'Invalid input' });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23)       }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25)       const versionId = await addVersionToMessage(messageId, content);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 26)       return res.status(200).json({ versionId });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 27)     }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 28) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 29)     return res.status(405).end(); // Method Not Allowed
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 30)   } catch (error) {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 31)     console.error(error);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 32)     return res.status(500).json({ error: 'Internal Server Error' });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 33)   }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 34) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import { Timestamp } from '@google-cloud/firestore';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) interface VersionOfMessage {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5)   sentTime: Timestamp;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   content: string;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9) interface Message {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)   author: 'User' | 'AI';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11)   versionsOfMessages: VersionOfMessage[];
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14) interface ChatData {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)   dateCreated: Timestamp;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16)   lastUsedDate: Timestamp;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17)   messages: Message[];
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20) async function createNewChat(): Promise<string> {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21)   const chatData: ChatData = {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 22)     dateCreated: Timestamp.now(),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23)     lastUsedDate: Timestamp.now(),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24)     messages: [],
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25)   };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 26) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 27)   const chatRef = await firestore.collection('chats').add(chatData);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 28)   return chatRef.id; // Returns the ID of the newly created chat.
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 29) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 30) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 31) export { createNewChat };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import { Timestamp, FieldValue } from '@google-cloud/firestore';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  4) async function addVersionToMessage(
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  5)   messageId: string,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   content: string,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  7) ): Promise<string> {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  8)   const versionData = {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  9)     sentTime: Timestamp.now(),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 10)     content: content,
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 11)   };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 12) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 13)   const versionRef = await firestore
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 14)     .collection('versionsOfMessages')
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 15)     .add(versionData);
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 16) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 17)   await firestore
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)     .collection('messages')
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)     .doc(messageId)
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)     .update({
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21)       versionsOfMessages: FieldValue.arrayUnion(versionRef.id),
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 22)     });
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 23) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 24)   return versionRef.id; // Returns the ID of the newly added version.
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 25) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 26) 
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 27) export { addVersionToMessage };
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  2) import styles from 'app/page.module.css';
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400  4) import Link from 'next/link';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  6)   return (
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  7)     <body
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  8)       style={{
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 11)         backgroundColor: '#191825',
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 12)         height: '100vh',
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 13)         display: 'flex',
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 14)         flexDirection: 'column',
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 15)         overflowY: 'hidden',
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 16)       }}
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 17)     >
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 18)       <div>
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 19)         <Navbar />
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 20)         <div className={styles.border} />
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 21)       </div>
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 23)       <div className={styles.content}>
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 24)         <div className={styles.containerText} style={{ fontSize: '40px' }}>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 25)           <div className={styles.action}>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 26)             <div className={`${styles.button} ${styles.account}`}>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 28)                 <span className={styles.iconTextContainer}>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 29)                   Try Now
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 30)                   <svg
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 31)                     xmlns="http://www.w3.org/2000/svg"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 32)                     width="30"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 33)                     height="30"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 34)                     viewBox="0 0 30 30"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 35)                     fill="none"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 36)                     className={styles.icon}
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 37)                   >
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 38)                     <path
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 39)                       d="M3.75 11.25V6.75C3.75 5.09315 5.09315 3.75 6.75 3.75H23.25C24.9069 3.75 26.25 5.09315 26.25 6.75V23.25C26.25 24.9069 24.9069 26.25 23.25 26.25H18.75"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 40)                       stroke="#FFA3FD"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 41)                       strokeWidth="2"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 42)                       strokeLinecap="round"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 43)                     />
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 44)                     <path
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 45)                       d="M20 10V9H21V10H20ZM12.5821 18.8321C12.1916 19.2226 11.5584 19.2226 11.1679 18.8321C10.7774 18.4416 10.7774 17.8084 11.1679 17.4179L12.5821 18.8321ZM19 17.5V10H21V17.5H19ZM20 11H12.5V9H20V11ZM20.7071 10.7071L12.5821 18.8321L11.1679 17.4179L19.2929 9.29289L20.7071 10.7071Z"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 46)                       fill="#FFA3FD"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 47)                     />
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 48)                     <rect
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 49)                       x="3.75"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 50)                       y="17.5"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 51)                       width="8.75"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 52)                       height="8.75"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 53)                       rx="2"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 54)                       stroke="#FFA3FD"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 55)                       strokeWidth="2"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 56)                       strokeLinecap="round"
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 57)                     />
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 58)                   </svg>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 59)                 </span>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 60)               </Link>
+09bd64b1 (Jason Choi       2023-10-30 14:14:02 -0400 61)             </div>
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 63)           Ask Away with RecurseAI
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 64)         </div>
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 66)         <div className={styles.containerText} style={{ fontSize: '20px' }}>
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 67)           RecurseAI aims to transform PaLM 2 into a project focused,
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 68)           self-prompting language model that can autonomously complete complex
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 69)           tasks and goals with the aid and guidance of the user. By enabling
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 70)           PaLM 2 to reprompt itself, RecurseAI allows for an extremely
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 71)           functional, goal focused AI to meet your demands.
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 72)         </div>
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400 73)       </div>
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 74)     </body>
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 75)   );
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 76) }
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  1) :root {
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  2)   --max-width: 100vh;
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400  3)   --border-radius: 12px;
+0cec3bf8 (Jason Choi       2023-10-22 16:20:54 -0400  4)   --font-mono: 'Roboto Mono';
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 1) export default function NotFound() {
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 2)   return (
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 3)     <main>
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 5)     </main>
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 6)   );
+^7abf2b0 (Jason Choi       2023-10-16 10:30:53 -0400 7) }

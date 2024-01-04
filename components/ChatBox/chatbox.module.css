@@ -1,0 +1,212 @@
+.chatSection {
+  flex-grow: 1;
+  width: calc(100% - 260px);
+}
+.chatScroll {
+  overflow-y: auto;
+  height: calc(100% - 170px);
+  padding-left: 10%;
+  padding-right: 10%;
+  border-left: #191825;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+.footer {
+  position: relative;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Keeps the textarea at the bottom */
+  padding: 10px;
+  min-height: 60px; /* Minimum height of the footer */
+  /* max-height: 100px; Maximum height of the footer */
+}
+.chatBox {
+  width: 50vw;
+  min-height: 45px;
+  max-height: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer textarea {
+  width: 48vw;
+  position: fixed;
+  bottom: 25px;
+  min-height: 30px;
+  padding: 10px 20px 20px;
+  border-radius: 20px;
+  max-height: 100px;
+  resize: none;
+  box-sizing: border-box;
+  transition: height 0.5s ease-out;
+  color: white;
+  background-color: #191825;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  overflow-y: auto;
+}
+.footer textarea:focus {
+  outline: none; /* Removes the default focus outline */
+  border: 1px solid transparent; /* Makes the border transparent on focus */
+}
+.footer textarea::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+/* Options Button and Navbar button */
+
+.option__icon {
+  margin-top: 10px;
+  margin-left: auto;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-size: 30px;
+  background: transparent;
+  color: white;
+  height: fit-content;
+  width: fit-content;
+  position: relative;
+}
+
+.option__icon:hover {
+  color: #d9d9d9;
+}
+
+.expand_icon {
+  margin-top: 10px;
+  margin-right: auto;
+
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  outline: none;
+
+  color: white;
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 1;
+  background: transparent;
+  align-items: center;
+}
+.expand_icon:hover {
+  outline: auto;
+}
+
+.button {
+  display: inline-flex;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 0;
+  background: #009578;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.button:hover {
+  background: #008168;
+}
+
+.button:active {
+  background: #006e58;
+}
+
+.button__text,
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  height: 100%;
+}
+
+.button__icon {
+  font-size: 1.3em;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  background-color: #191825;
+  padding: 10px;
+  max-height: 50px;
+  display: flex;
+}
+.flipHorizontal {
+  transform: scaleX(-1);
+}
+.title {
+  display: flex;
+  color: white;
+  padding: 0px 28px;
+  justify-content: center;
+  width: auto;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.dropArea {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.hoverMessage {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #666;
+}
+
+.files {
+  height: 20px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-size: small;
+}
+.fileButton {
+  /* Styles for the button */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 30px;
+  max-width: 100px;
+  text-overflow: ellipsis;
+}
+
+.fileButton:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+
+.fileName {
+  display: block;
+}
+
+.deleteText {
+  display: none;
+}
+
+.fileButton:hover .fileName {
+  display: none;
+}
+
+.fileButton:hover .deleteText {
+  display: block;
+}

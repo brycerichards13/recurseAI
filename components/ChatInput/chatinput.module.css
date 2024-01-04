@@ -1,0 +1,46 @@
+.inputText {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px 20px 0px 20px;
+    background-color: #7C8E8F;
+    margin-left: auto;
+    word-break: break-word;
+}
+
+.text {
+    text-align: left;
+    width: 100%;
+    color: inherit;
+    overflow-wrap: break-word;
+}
+
+.edit {
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    resize: none;
+    color: white;
+    word-wrap: break-word;
+}
+.edit:focus {
+    outline: none;
+    border: none;
+}
+
+.inputFooter {
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+.inputFooter button {
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+
+}

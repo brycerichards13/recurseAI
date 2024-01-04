@@ -1,0 +1,99 @@
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500   9) import ToggleSwitch from 'components/ToggleSwitch';
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 187)   const [darkMode, setDarkMode] = useState(false);
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 188)   const toggleDarkMode = () =>{
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 189)     setDarkMode(!darkMode);
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 190)   };
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 547)   
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 555)         <ToggleSwitch darkMode={darkMode} onChange ={toggleDarkMode}/>
+9e9b2cf0 (Austin Gilbert   2023-12-01 18:42:10 -0500 556)         
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 181) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 182) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 183) .deleteButton{
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 184)   background: transparent;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 185)   color: #fff;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 186)   border: none;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 187)   cursor: pointer;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 188)   font-size: 16px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 189)   font-weight: 200;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 190)   margin-left: 5%;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 191) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 192) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 193) .deleteButton:hover{
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 194)   color: #d9d9d9;
+59d547e4 (Austin Gilbert 2023-12-01 19:09:08 -0500   7) import { add, chatbox, chatboxOutline, trashOutline  } from 'ionicons/icons';
+59d547e4 (Austin Gilbert 2023-12-01 19:09:08 -0500 233)               <IonIcon icon={trashOutline} />
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  1) // components/ToggleSwitch.js
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  2) import { useState } from 'react';
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  3) import { IonIcon } from '@ionic/react';
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  4) import { moonOutline, sunnyOutline } from 'ionicons/icons';
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  5) import styles from './ToggleSwitch.module.css';
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  6) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  7) const ToggleSwitch = () => {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  8)   const [isDarkMode, setIsDarkMode] = useState(false);
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  9) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 10)   const handleToggle = () => {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 11)     setIsDarkMode((prevMode) => !prevMode);
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 12)   };
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 13) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 14)   return (
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 15)     <div
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 16)       className={`${styles.toggleSwitch} ${isDarkMode ? styles.darkMode : ''}`}
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 17)       onClick={handleToggle}
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 18)     >
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 19)       <div className={`${styles.circle} ${isDarkMode ? 'active' : ''}`}>
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 20)         <IonIcon
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 21)           icon={isDarkMode ? sunnyOutline : moonOutline}
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 22)           className={`${styles.icon} ${isDarkMode ? styles.iconDark : ''}`}
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 23)         />
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 24)         
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 25)       </div>
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 26)     </div>
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 27)   );
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 28) };
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 29) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 30) export default ToggleSwitch;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  1) /* components/ToggleSwitch.module.css */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  2) .toggleSwitch {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  3)   position: relative;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  4)   width: 60px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  5)   height: 34px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  6)   background-color: #ccc;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  7)   border-radius: 34px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  8)   cursor: pointer;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500  9)   overflow: hidden;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 10)   margin-top: 10px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 11) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 12) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 13) .circle {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 14)   position: absolute;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 15)   top: 2px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 16)   left: 2px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 17)   width: 30px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 18)   height: 30px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 19)   border-radius: 50%;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 20)   background-color: #333;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 21)   transition: transform 0.3s ease; /* Transition transform property */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 22)   display: flex;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 23)   align-items: center;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 24)   justify-content: center;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 25) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 26) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 27) .toggleSwitch.darkMode .circle {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 28)   transform: translateX(26px); /* Initial position for dark mode */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 29)   background-color: #fff; /* Dark mode background color */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 30) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 31) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 32) .toggleSwitch.darkMode .circle.active {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 33)   transform: translateX(0); /* Position when active (light mode) */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 34)   background-color: #333; /* Light mode background color */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 35) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 36) 
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 37) .icon {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 38)   /* Adjust styles for the icon */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 39)   width: 24px; /* Adjust the size as needed */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 40)   height: 24px;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 41)   color: #fff;
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 42) }
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 43) .toggleSwitch.darkMode .iconDark {
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 44)   color: #333; /* Dark mode icon color */
+9e9b2cf0 (Austin Gilbert 2023-12-01 18:42:10 -0500 45) }

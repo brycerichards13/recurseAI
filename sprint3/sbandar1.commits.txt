@@ -1,0 +1,134 @@
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  1) import { AiApiWrapper } from 'app/api/aiApiWrapper/AiApiWrapper';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  2) import * as cheerio from 'cheerio';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  3) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  4) /**
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  5)  * @description Summarizes any content given the content as a string.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  6)  *
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  7)  * @param aiWrapper An AiApiWrapper class.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  8)  * @param content Content to summarize.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  9)  * @returns A summary of the content as a `Promise<string>`.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 10)  */
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 11) export default async function summarize(
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 12)   aiWrapper: new () => AiApiWrapper,
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 13)   content: string,
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 14) ): Promise<string> {
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 15)   const ai = new aiWrapper();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 16) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 17)   // Create prompt and shorten the prompt
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 18)   const prompt =
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 19)     'Summarize the content of following HTML page. Do not mention anything about the HTML or how the page is formatted.\n';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 20)   const normalized_content = prompt + normalizeContent(content);
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 21)   const shortened_content = shortenContent(normalized_content, 15000); // Max AI can handle is 20k bytes for payload.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 22) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 23)   // Summarize using AI
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 24)   const res = await ai.prompt([shortened_content]);
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 25)   return res;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 26) }
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 27) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 28) /**
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 29)  * @description Normalizes HTML content by removing any non-text content.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 30)  *
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 31)  * @param content Content to normalize.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 32)  * @returns Normalized content as a `string`.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 33)  */
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 34) function normalizeContent(content: string): string {
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 35)   let normalized_content;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 36)   const $ = cheerio.load(content);
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 37) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 38)   // Remove any HTML tags that are not text content.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 39)   $('script').remove();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 40)   $('img').remove();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 41)   normalized_content = $.root().text();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 42) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 43)   // Remove excessive whitespace (eats up token count).
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 44)   normalized_content = normalized_content.replace(/\s+/g, ' ');
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 45) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 46)   return normalized_content;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 47) }
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 48) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 49) /**
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 50)  * @description Shortens content to max_size an AI's API can handle.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 51)  * Substring cannot be used as Unicode characters have variable byte sizes.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 52)  *
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 53)  * @param content Content to be shortened.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 54)  * @param max_size Maximum number of bytes in resulting string.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 55)  * @returns Shortened content as a `string`.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 56)  */
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 57) function shortenContent(content: string, max_size: number): string {
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 58)   let shortened_content = '';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 59)   const encoder = new TextEncoder();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 60) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 61)   for (const char of content) {
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 62)     const size = encoder.encode(shortened_content + char).length;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 63)     if (size > max_size) break;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 64) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 65)     shortened_content += char;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 66)   }
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 67) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 68)   return shortened_content;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 69) }
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  1) import puppeteer from 'puppeteer';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  2) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  3) /**
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  4)  * @description Goes to the specified URL and returns an
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  5)  * HTML representation of the page as a string.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  6)  *
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  7)  * @param url A URL to a website that begins with an valid scheme
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  8)  * (e.g., http://, https://).
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  9)  *
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 10)  * @returns The content of the website as a `Promise<string>`.
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 11)  */
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 12) export default async function webScraper(url: string): Promise<string> {
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 13)   const browser = await puppeteer.launch({ headless: 'new' });
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 14)   const page = await browser.newPage();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 15) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 16)   // Go to url and scrape content
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 17)   await page.goto(url);
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 18)   const res = await page.content();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 19) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 20)   // Close browser and return data
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 21)   await browser.close();
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 22)   return res;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 23) }
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  1) import { PalmAiApiWrapper } from 'app/api/aiApiWrapper/PalmAiApiWrapper';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  2) import summarize from 'app/api/webScraper/summarize';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  3) import webScraper from 'app/api/webScraper/webScraper';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  4) import MarkdownContent from 'components/Markdown';
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  5) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  6) export default async function WebTest() {
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  7)   const content = await webScraper(
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500  9)   );
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 10)   const summary = await summarize(PalmAiApiWrapper, content);
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 11) 
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 12)   return <MarkdownContent>{summary}</MarkdownContent>;
+875ed243 (Shashank Bandaru 2023-11-14 15:26:03 -0500 13) }
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  84)               <img src="/edit.svg" alt="Change Input" />
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  86)             {/* Disabled permanently until chat inputs are correctly stored. */}
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  87)             {chatTree.children.length > 1 ? (
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  88)               <>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  89)                 <button onClick={() => changeChildAndRefreshArray(-1)}>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  90)                   <img src="/back.svg" alt="GO BACK" />
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  91)                 </button>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  92)                 <button onClick={() => changeChildAndRefreshArray(1)}>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  93)                   <img src="/forward.svg" alt="GO FORWARD" />
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  94)                 </button>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  95)               </>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  96)             ) : (
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  97)               <></>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500  98)             )}
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 47)   };
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 77)         {/* Looks at priorityChild's (current input selected)
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 78)         children's (all AI responses for the selected input) 
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 79)         length to determine if arrows should show. */}
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 80)         {chatTree.children[chatTree.priorityChild].children.length > 1 ? (
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 81)           <>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 82)             <button onClick={() => changeChildAndRefreshArray(-1)}>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 83)               <img src="/back.svg" alt="GO BACK" />
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 84)             </button>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 85)             <button onClick={() => changeChildAndRefreshArray(1)}>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 86)               <img src="/forward.svg" alt="GO FORWARD" />
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 87)             </button>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 88)           </>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 89)         ) : (
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 90)           <></>
+97691f99 (Shashank Bandaru 2023-11-14 21:59:17 -0500 91)         )}

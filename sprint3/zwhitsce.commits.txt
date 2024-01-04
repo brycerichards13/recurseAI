@@ -1,0 +1,477 @@
+be19179c (Zackery         2023-11-15 17:36:43 -0500  1) Welcome to the recurseAI Project
+be19179c (Zackery         2023-11-15 17:36:43 -0500  2) ================================
+be19179c (Zackery         2023-11-15 17:36:43 -0500  3) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500  4) Contributors
+be19179c (Zackery         2023-11-15 17:36:43 -0500  5) ============
+be19179c (Zackery         2023-11-15 17:36:43 -0500  7) - Jason Choi - Jchoi1
+be19179c (Zackery         2023-11-15 17:36:43 -0500  8) - Shashank Bandaru - bandarussr
+be19179c (Zackery         2023-11-15 17:36:43 -0500  9) - Austin Gilbert - AustinGilbe
+be19179c (Zackery         2023-11-15 17:36:43 -0500 11) - Zackery Whitscell - ZackeryW
+be19179c (Zackery         2023-11-15 17:36:43 -0500 12) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 13) [![recurseAI logo]][http://localhost:3000/]
+be19179c (Zackery         2023-11-15 17:36:43 -0500 14) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 15) Table of Contents
+be19179c (Zackery         2023-11-15 17:36:43 -0500 16) =================
+be19179c (Zackery         2023-11-15 17:36:43 -0500 17) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 18)  - [Overview](#overview)
+be19179c (Zackery         2023-11-15 17:36:43 -0500 19)  - [Download](#download)
+be19179c (Zackery         2023-11-15 17:36:43 -0500 20)  - [Build and Install](#build-and-install)
+be19179c (Zackery         2023-11-15 17:36:43 -0500 21)  - [Documentation](#documentation)
+be19179c (Zackery         2023-11-15 17:36:43 -0500 22)  - [User Instructions](#user-intstructions)
+be19179c (Zackery         2023-11-15 17:36:43 -0500 23)  - [License](#license)
+be19179c (Zackery         2023-11-15 17:36:43 -0500 24) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 25) Overview
+be19179c (Zackery         2023-11-15 17:36:43 -0500 26) ========
+be19179c (Zackery         2023-11-15 17:36:43 -0500 27) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 29) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 30) Download
+be19179c (Zackery         2023-11-15 17:36:43 -0500 31) ========
+be19179c (Zackery         2023-11-15 17:36:43 -0500 32) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 33) xxx
+be19179c (Zackery         2023-11-15 17:36:43 -0500 34) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 35) Build and Install
+be19179c (Zackery         2023-11-15 17:36:43 -0500 36) =================
+be19179c (Zackery         2023-11-15 17:36:43 -0500 37) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 38) xxx
+be19179c (Zackery         2023-11-15 17:36:43 -0500 39) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 40) Documentation
+be19179c (Zackery         2023-11-15 17:36:43 -0500 41) =============
+be19179c (Zackery         2023-11-15 17:36:43 -0500 42) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 43) xxx
+be19179c (Zackery         2023-11-15 17:36:43 -0500 44) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 45) User Instructions
+be19179c (Zackery         2023-11-15 17:36:43 -0500 46) =================
+be19179c (Zackery         2023-11-15 17:36:43 -0500 47) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 48) xxx
+be19179c (Zackery         2023-11-15 17:36:43 -0500 49) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 50) License
+be19179c (Zackery         2023-11-15 17:36:43 -0500 51) =======
+be19179c (Zackery         2023-11-15 17:36:43 -0500 52) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 53) recurseAI is licensed under the MIT software license, which means that
+be19179c (Zackery         2023-11-15 17:36:43 -0500 54) you are free to get and use it for commercial and non-commercial
+be19179c (Zackery         2023-11-15 17:36:43 -0500 55) purposes as long as you fulfill its conditions.
+be19179c (Zackery         2023-11-15 17:36:43 -0500 56) 
+be19179c (Zackery         2023-11-15 17:36:43 -0500 57) See the [LICENSE.txt](LICENSE.txt) file for more details.
+be19179c (Zackery 2023-11-15 17:36:43 -0500 1) Copyright 2023 recurseAI
+be19179c (Zackery 2023-11-15 17:36:43 -0500 2) 
+be19179c (Zackery 2023-11-15 17:36:43 -0500 3) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+be19179c (Zackery 2023-11-15 17:36:43 -0500 4) 
+be19179c (Zackery 2023-11-15 17:36:43 -0500 5) The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+be19179c (Zackery 2023-11-15 17:36:43 -0500 6) 
+be19179c (Zackery 2023-11-15 17:36:43 -0500 7) THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   1) .chatSection {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   2)   flex-grow: 1;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   3)   width: calc(100% - 260px);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   4) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   5) .chatScroll {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   6)   overflow-y: auto;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   7)   height: calc(100% - 150px);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   8) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   9) .footer {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  10)   position: relative;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  11)   display: flex;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  12)   justify-content: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  13)   align-items: flex-end; /* Keeps the textarea at the bottom */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  14)   padding: 10px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  15)   min-height: 60px; /* Minimum height of the footer */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  16)   /* max-height: 100px; Maximum height of the footer */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  17) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  18) .chatBox {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  19)   width: 50vw;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  20)   min-height: 45px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  21)   max-height: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  22)   display: flex;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  23)   justify-content: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  24)   align-items: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  25) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  26) .footer textarea {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  27)   width: 48vw;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  28)   position: fixed;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  29)   bottom: 12px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  30)   min-height: 30px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  31)   padding: 10px 20px 20px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  32)   border-radius: 20px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  33)   max-height: 100px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  34)   resize: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  35)   box-sizing: border-box;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  36)   transition: height 0.5s ease-out;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  37)   color: white;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  38)   background-color: #191825;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  39)   scrollbar-width: none; /* For Firefox */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  40)   -ms-overflow-style: none; /* For Internet Explorer and Edge */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  41)   overflow-y: auto;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  42) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  43) .footer textarea:focus {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  44)   outline: none; /* Removes the default focus outline */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  45)   border: 1px solid transparent; /* Makes the border transparent on focus */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  46) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  47) .footer textarea::-webkit-scrollbar {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  48)   display: none; /* For Chrome, Safari, and Opera */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  49) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  50) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  51) /* Options Button and Navbar button */
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  52) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  53) .option__icon {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  54)   margin-top: 10px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  55)   margin-left: auto;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  56)   cursor: pointer;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  57)   border: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  58)   outline: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  59)   padding: 0;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  60)   font-size: 30px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  61)   background: transparent;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  62)   color: white;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  63)   height: fit-content;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  64)   width:fit-content;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  65)   position: relative;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  66) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  67) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  68) .option__icon:hover{
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  69)   color:#d9d9d9
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  70) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  71) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  72) .expand_icon{
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  73)   margin-top: 10px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  74)   margin-right: auto;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  75) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  76)   width:fit-content;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  77)   height: fit-content;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  78)   border: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  79)   outline: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  80) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  81)   color: white;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  82)   cursor: pointer;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  83)   font-size: 30px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  84)   line-height: 1;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  85)   background: transparent;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  86)   align-items: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  87) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  88) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  89) .expand_icon:hover{
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  90)   outline: auto;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  91) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  92) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  93) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  94) .button {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  95)   display: inline-flex;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  96)   height: 45px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  97)   box-sizing: border-box;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  98)   padding: 0;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  99)   background: #009578;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 100)   border-radius: 7px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 101)   border: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 102)   outline: none;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 103)   overflow: hidden;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 104)   font-size: 14px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 105)   font-weight: 500;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 106)   cursor: pointer;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 107) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 108) .button:hover {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 109)   background: #008168;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 110) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 111) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 112) .button:active {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 113)   background: #006e58;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 114) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 115) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 116) .button__text,
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 117) .button__icon {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 118)   display: inline-flex;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 119)   align-items: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 120)   padding: 0 12px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 121)   color: #fff;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 122)   height: 100%;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 123) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 124) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 125) .button__icon {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 126)   font-size: 1.3em;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 127)   background: rgba(0, 0, 0, 0.08);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 128) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 129) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 130) .header {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 131)   background-color: #191825;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 132)   padding: 10px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 133)   max-height: 50px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 134)   display: flex;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 135) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 136) .flipHorizontal {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 137)   transform: scaleX(-1);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 138) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 139) .title {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 140)   display: flex;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 141)   color: white;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 142)   padding: 0px 28px;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 143)   justify-content: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 144)   align-items: center;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 145)   flex: 1 0 0;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 146)   align-self: stretch;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 147) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   1) // React components
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   2) import { useState, useEffect, useRef } from 'react';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   3) import { fetchData } from 'app/api/fetch-data';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   4) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   5) // Components
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   6) import ChatInput from 'components/ChatInput';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   7) import ChatResponse from 'components/ChatResponse';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   8) import { Tree, TreeNode } from 'lib/tree-datastructure';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500   9) import { IonIcon } from '@ionic/react';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  10) import { refresh } from 'ionicons/icons';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  11) import { arrowDown } from 'ionicons/icons';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  12) import { cog } from 'ionicons/icons';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  13) import { menu } from 'ionicons/icons';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  14) // CSS
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  15) import styles from '../ChainPrompt/chainprompt.module.css';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  16) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  17) // Init the chat tree and current node
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  18) // The current node is created to more easily add to the chain of nodes without having to iterate through the tree to find where to add the node
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  19) const chatTree = new Tree('root');
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  20) let currentNode: TreeNode;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  21) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  22) interface ChatAreaProps {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  23)   toggleSidebar: () => void;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  24)   isSidebarOpen: boolean; // Add this line to accept the new prop
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  25) }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  26) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  27) export default function ChatBox({
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  28)   children,
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  29)   toggleSidebar,
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  30)   isSidebarOpen,
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  31) }: ChatAreaProps) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  32)   'use client';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  33) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  34)   // Input value is equal to the current input in the input box
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  35)   // Input array is equal to the array of all inputs and outputs
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  36)   const [inputValue, setInputValue] = useState<string>('');
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  37)   const [inputArray, setInputArray] = useState<string[]>([]);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  38)   const textareaRef = useRef(null); // Create a ref for the textarea
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  39)   const chatContainerRef = useRef(null); // Create a ref for the chat window
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  40) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  41)   // Function to resize the textarea
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  42)   // const resizeTextarea = () => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  43)   //   const textarea = textareaRef.current;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  44)   //   if (textarea) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  45)   //     textarea.style.height = 'auto'; // Reset the height so the scrollHeight includes only the new text
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  46)   //     textarea.style.height = textarea.scrollHeight + 'px'; // Set the height to the scrollHeight
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  47)   //   }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  48)   // };
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  49)   const resizeTextarea = () => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  50)     const textarea = textareaRef.current;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  51)     if (textarea) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  52)       // Temporarily shrink the textarea to get the correct new scrollHeight
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  53)       textarea.style.height = 'auto';
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  54)       // Calculate the new height (scrollHeight includes the height of the content)
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  55)       let newHeight = textarea.scrollHeight;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  56)   
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  57)       // Apply minimum and maximum height constraints
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  58)       newHeight = Math.max(newHeight, 0); // Replace 30 with your minimum height
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  59)       newHeight = Math.min(newHeight, 250); // Replace 250 with your maximum height
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  60)   
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  61)       // Set the new height
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  62)       textarea.style.height = `${newHeight}px`;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  63)     }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  64)   };
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  65) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  66)   function regenerateResponse(indexToGoTill: number) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  67)     const priorityNodeAtLevel: TreeNode = chatTree.getChildAtLevel(
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  68)       indexToGoTill - 1,
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  69)       chatTree,
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  70)     );
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  71) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  72)     const redoArray: string[] = chatTree
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  73)       .returnStringArray()
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  74)       .slice(0, indexToGoTill);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  75) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  76)     fetchData(redoArray)
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  77)       .then((response: string) => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  78)         priorityNodeAtLevel.addChild(new TreeNode(response));
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  79)         priorityNodeAtLevel.changePriorityChild(1);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  80)         updateInputArray(chatTree);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  81)       })
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  82)       .catch((error) => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  83)         console.error('API Request Error: ', error);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  84)       });
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  85)   }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  86) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  87)   // Scrolls the page to the bottom when the user clicks the button
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  88)   function scrollToBottom() {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  89)     if (chatContainerRef.current) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  90)       const chatContainer = chatContainerRef.current;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  91)       chatContainer.scrollTop = chatContainer.scrollHeight;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  92)     }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  93)   }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  94) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  95) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  96)   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  97)     if (event.key === 'Enter' && !event.shiftKey) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  98)       event.preventDefault();
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500  99) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 100)       if (inputValue.trim() !== '') {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 101)         addNewNode(inputValue);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 102) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 103)         const updatedInputArray: string[] = chatTree.returnStringArray();
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 104)         // Calls a server function from a separate file (because it's asynchronous and the component were currently in is a client component)
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 105)         // Awaits a response, then adds the new response to the tree
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 106)         fetchData(updatedInputArray)
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 107)           .then((res) => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 108)             addNewNode(res);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 109)           })
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 110)           .catch((error) => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 111)             console.error('API Request Error: ', error);
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 112)           });
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 113)         //Resets the input box to be empty
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 114)         setInputValue('');
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 115)         resetTextareaSize();
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 116)       } else {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 117)         //alert('Input cannot be empty.');
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 118)         addNewNode('Error: Input cannot be empty');
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 119)       }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 120)     } else if (event.key === 'Enter' && event.shiftKey) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 121)       // Allow the newline to be added by not calling event.preventDefault()
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 122)       // The browser will handle inserting the newline
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 123)     }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 124)   }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 125)   const resetTextareaSize = () => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 126)     const textarea = textareaRef.current;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 127)     if (textarea) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 128)       textarea.style.height = '0px'; // Set this to your desired minimum height
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 129)       // Reset the bottom of the chatBox if necessary
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 130)     }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 131)   };
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 132)   return (
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 133)     <div className={styles.chatSection}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 134)       <header className={styles.header}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 135)         <button className={styles.expand_icon} onClick={toggleSidebar}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 136)           <IonIcon icon={menu} />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 137)         </button>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 138)         <h2 className={styles.title}>Title</h2>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 139)         <button className={styles.option__icon}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 140)           <IonIcon icon={cog} />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 141)         </button>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 142)       </header>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 143)       <main className={styles.chatScroll} ref={chatContainerRef}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 144)         {inputArray.map((message, index) => {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 145)           const hasPreviousPrompt = index > 0;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 146)           const hasNextPrompt = index < inputArray.length - 1;
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 147) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 148)           if (index % 2 === 0) {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 149)             return (
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 150)               <ChatInput
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 151)                 key={index}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 152)                 data={message}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 153)                 indexValue={index}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 154)                 chatTree={chatTree}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 155)                 // Prop function to change the priority child of the parent node
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 156)                 // The .bind function is there because otherwise the node being passed in would not have the correct values
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 157)                 onChangePriorityChild={chatTree
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 158)                   .getChildAtLevel(index - 1, chatTree)
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 159)                   .changePriorityChild.bind(
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 160)                     chatTree.getChildAtLevel(index - 1, chatTree),
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 161)                   )}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 162)                 onUpdateInputArray={updateInputArray}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 163)                 onChangePreviousInput={changePreviousInput}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 164)               />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 165)             );
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 166)           } else {
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 167)             return (
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 168)               <ChatResponse
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 169)                 key={index}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 170)                 data={message}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 171)                 index={index}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 172)                 chatTree={chatTree}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 173)                 // Prop function to change the priority child of the parent node
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 174)                 // The .bind function is there because otherwise the node being passed in would not have the correct values
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 175)                 onChangePriorityChild={chatTree
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 176)                   .getChildAtLevel(index - 1, chatTree)
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 177)                   .changePriorityChild.bind(
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 178)                     chatTree.getChildAtLevel(index - 1, chatTree),
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 179)                   )}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 180)                 onUpdateInputArray={updateInputArray}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 181)               />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 182)             );
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 183)           }
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 184)         })}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 185)       </main>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 186) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 187)       <footer className={styles.footer}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 188)         <button
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 189)           type="button"
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 190)           className={styles.button}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 191)           onClick={() => regenerateResponse(inputArray.length - 1)}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 192)         >
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 193)           <span className={styles.button__text}>Regenerate</span>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 194)           <span className={styles.button__icon}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 195)             <IonIcon icon={refresh} />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 196)           </span>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 197)         </button>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 198) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 199)         <button
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 200)           type="button"
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 201)           className={styles.button}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 202)           onClick={scrollToBottom}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 203)         >
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 204)           <span className={styles.button__text}>To Bottom</span>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 205)           <span className={styles.button__icon}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 206)             <IonIcon icon={arrowDown} />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 207)           </span>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 208)         </button>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 209) 
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 210)         <form action={fetchData}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 211)           <div className={styles.chatBox}>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 212)             <textarea // Change this to textarea
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 213)               ref={textareaRef} // Attach the ref to the textarea
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 214)               onKeyDown={handleKeyDown}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 215)               onInput={resizeTextarea} // Add the onInput event handler
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 216)               value={inputValue}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 217)               onChange={(e) => setInputValue(e.target.value)}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 218)               // style={{height: '0px'}}
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 219)               placeholder="Ask Away..."
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 220)             />
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 221)           </div>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 222)         </form>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 223)       </footer>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 224)     </div>
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 225)   );
+a26e6b39 (Zackery 2023-11-15 19:07:24 -0500 226) }
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500  12) import { arrowDown } from 'ionicons/icons';
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500  41)   const chatContainerRef = useRef(null); // Create a ref for the chat window
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 114)   // Scrolls the page to the bottom when the user clicks the button
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 115)   function scrollToBottom() {
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 116)     if (chatContainerRef.current) {
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 117)       const chatContainer = chatContainerRef.current;
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 118)       chatContainer.scrollTop = chatContainer.scrollHeight;
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 119)     }
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 120)   }
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 121) 
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 146)       if (inputValue.trim() !== '') {
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 147)         addNewNode(inputValue);
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 148) 
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 149)         const updatedInputArray: string[] = chatTree.returnStringArray();
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 150)         // Calls a server function from a separate file (because it's asynchronous and the component were currently in is a client component)
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 151)         // Awaits a response, then adds the new response to the tree
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 152)         fetchData(updatedInputArray)
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 153)           .then((res) => {
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 154)             addNewNode(res);
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 155)           })
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 156)           .catch((error) => {
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 157)             console.error('API Request Error: ', error);
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 158)           });
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 159)         //Resets the input box to be empty
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 160)         setInputValue('');
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 162)       } else {
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 163)         //alert('Input cannot be empty.');
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 164)         addNewNode('Error: Input cannot be empty');
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 165)       }
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 189)       <main className={styles.chatScroll} ref={chatContainerRef}>
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 191)           const hasPreviousPrompt = index > 0;
+6ddda38c (Zackery         2023-11-01 22:49:48 -0400 192)           const hasNextPrompt = index < inputArray.length - 1;
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 245)         <button
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 246)           type="button"
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 247)           className={styles.button}
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 248)           onClick={scrollToBottom}
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 249)         >
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 250)           <span className={styles.button__text}>To Bottom</span>
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 251)           <span className={styles.button__icon}>
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 252)             <IonIcon icon={arrowDown} />
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 253)           </span>
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 254)         </button>
+2c7c081d (Zackery         2023-11-15 18:36:26 -0500 255) 
